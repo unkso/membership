@@ -6,5 +6,5 @@ class UserHistoryType extends DatabaseObject
 {
 	protected static $databaseTableName = 'unkso_user_history_type';
 	
-	protected static $databaseTableIndexName = 'userHistoryTypeID';
+	protected static $databaseTableIndexName = 'historyTypeID';
 }

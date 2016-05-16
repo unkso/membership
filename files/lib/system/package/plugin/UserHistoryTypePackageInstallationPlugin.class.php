@@ -1,7 +1,6 @@
 <?php
 namespace wcf\system\package\plugin;
 use wcf\system\WCF;
-use wcf\system\exception\SystemException;
 
 class UserHistoryTypePackageInstallationPlugin extends AbstractXMLPackageInstallationPlugin 
 {
@@ -20,6 +19,16 @@ class UserHistoryTypePackageInstallationPlugin extends AbstractXMLPackageInstall
 	 */
 	protected function handleDelete(array $items) 
     {
+		$sql = "DELETE FROM 	wcf".WCF_N."_".$this->tableName."
+				WHERE 			identifier = ?
+								AND packageID = ?";
+		$statement = WCF::getDB()->prepareStatement($sql);
+		foreach ($items as $item) {
+			$statement->execute(array(
+				$item['attributes']['identifier'],
+				$this->installation->getPackageID()
+			));
+		}
 	}
 	
 	/**
@@ -27,8 +36,12 @@ class UserHistoryTypePackageInstallationPlugin extends AbstractXMLPackageInstall
 	 */
 	protected function prepareImport(array $data) 
     {
-		mail('debug@padarom.io', 'debug', print_r($data, true));
-		throw new SystemException("It works! We can now add our own user history types!");
+		return array(
+			'identifier'      => $data['attributes']['identifier'],
+			'displayName'     => $data['elements']['name'],	
+			'displayTemplate' => $data['elements']['template'],
+			'classPath'       => $data['elements']['class'],
+		);
 	}
 	
 	/**
@@ -36,6 +49,18 @@ class UserHistoryTypePackageInstallationPlugin extends AbstractXMLPackageInstall
 	 */
 	protected function findExistingItem(array $data) 
     {
-        return array();
+		$sql = "SELECT 	*
+				FROM 	wcf".WCF_N."_".$this->tableName."
+				WHERE 	identifier = ?
+						AND packageID = ?";
+		$parameters = array(
+			$data['identifier'],
+			$this->installation->getPackageID()
+		);
+		
+        return array(
+			'sql' => $sql,
+			'parameters' => $parameters,
+		);
 	}
 }
