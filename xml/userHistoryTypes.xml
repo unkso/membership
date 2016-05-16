@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com https://www.woltlab.com/XSD/maelstrom/packageInstallationPlugin.xsd">
+  <import>
+
+    
+    <userhistorytype identifier="unkso.loa">
+      <name>LOA</name>
+      <displaytemplate><![CDATA[{rank}.{name} has been on Leave of Absence from {startDate} to {endDate}]]></displaytemplate>
+      <class>wcf\data\membership\userhistory\type\LOAHistoryType</class>
+    </userhistorytype>
+      
+    
+  </import>
+</data>

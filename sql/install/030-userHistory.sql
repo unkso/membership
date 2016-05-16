@@ -2,8 +2,7 @@
 CREATE TABLE wcf1_unkso_user_history (
     historyID INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     membershipID INT(10) NOT NULL,
-    startDate DATE NOT NULL,
-    endDate DATE,
+    date DATE NOT NULL,
     data LONGTEXT,
     historyTypeID INT(10) NOT NULL
 );

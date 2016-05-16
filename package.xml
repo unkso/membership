@@ -23,8 +23,8 @@
 		<instruction type="template">templates.tar</instruction>
 		<instruction type="file">files.tar</instruction>
 		<instruction type="language">language/*.xml</instruction>
-		<instruction type="pageMenu">pageMenu.xml</instruction>
-		
+		<instruction type="pageMenu">xml/pageMenu.xml</instruction>
+				
 		<!-- SQL Installation separated into multiple files for clarity -->
 		<instruction type="sql">sql/install/010-membership.sql</instruction>
 		<instruction type="sql">sql/install/020-userHistoryType.sql</instruction>
@@ -32,5 +32,9 @@
 		<instruction type="sql">sql/install/040-unit.sql</instruction>
 		<instruction type="sql">sql/install/050-unitPosition.sql</instruction>
 		<instruction type="sql">sql/install/060-unitMember.sql</instruction>
+		
+		<!-- User History Type PIP -->
+		<instruction type="packageInstallationPlugin">xml/pip.xml</instruction>
+		<instruction type="userHistoryType">xml/userHistoryTypes.xml</instruction>
 	</instructions>
 </package>
