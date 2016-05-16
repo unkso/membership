@@ -1,0 +1,16 @@
+language: node_js
+node_js: "5"
+before_script: npm install -g wcf-utils
+script: wcfutils
+branches:
+  only: master
+git:
+  depth: 5
+env:
+  global:
+    - IDENTIFIER=com.clanunknownsoldiers.plugin.membership.tar
+    - FTP_HOST=ftp://thunderstorm.padarom.io/server/uploads/
+notifications:
+      email: false
+
+after_success: curl --ftp-create-dirs -T $IDENTIFIER -u $FTP_USER:$FTP_PASSWORD $FTP_HOST
