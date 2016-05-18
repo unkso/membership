@@ -12,7 +12,11 @@
 
 This is the list of all current members
 
-{$historyExample}
+<div class="alert alert-info">
+    <h3>User history example</h3>
+    <p><code>UserHistoryFactory::makeHistory(1)->getDescription();</code></p>
+    <p>{$historyExample}</p>
+</div>
 
 {include file='footer'}
 </body>

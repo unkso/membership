@@ -14,9 +14,10 @@ class UserHistoryFactory
      */
     public static function makeHistory($id)
     {
-        $historyClass = (new BasicUserHistory($id))->getHistoryType()->classPath;
+        $userHistory = new BasicUserHistory($id);
+        $historyClass = $userHistory->getHistoryType()->classPath;
         
-        return new $historyClass($id);
+        return new $historyClass(null, null, $userHistory);
     }
     
     public static function getUserHistory(User $id)
