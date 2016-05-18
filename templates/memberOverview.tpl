@@ -6,11 +6,13 @@
 </head>
 
 <body id="tpl{$templateName|ucfirst}">
-{include file='header' title='wcf.page.personnel.overview'|lang}
+{include file='header' title='wcf.page.personnel.overview'|language}
 
 {include file='userNotice'}
 
 This is the list of all current members
+
+{$historyExample}
 
 {include file='footer'}
 </body>
