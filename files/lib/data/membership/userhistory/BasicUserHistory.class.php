@@ -22,7 +22,7 @@ class BasicUserHistory extends DatabaseObject
 	{
 		return [
 			'_username' => $this->getMembership()->getUser()->username,
-			'_rank' => 'LT',
+			'_rank' => $this->getMembership()->getRankAtTime($this->date),
 			'_date' => $this->date,
 		];
 	}
@@ -31,7 +31,7 @@ class BasicUserHistory extends DatabaseObject
 	{
 		parent::handleData($data);
 		
-		$this->attributes = json_decode($data['data'], true);
+		$this->attributes = json_decode($data['metadata'], true);
 		
 		// If json_decode fails we still want to have an (empty) array.
 		if (is_null($this->attributes)) {
@@ -97,6 +97,16 @@ class BasicUserHistory extends DatabaseObject
 	
 	public static function getIdentifier()
 	{
-		return self::$identifier;
+		return static::$identifier;
 	}
+	
+	public static function getAllUserHistoryEntries()
+	{
+		
+	}
+    
+    public static function getAllForUser()
+    {
+        
+    }
 }

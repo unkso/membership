@@ -3,7 +3,7 @@ CREATE TABLE wcf1_unkso_user_history (
     historyID INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     membershipID INT(10) NOT NULL,
     date DATE NOT NULL,
-    data LONGTEXT DEFAULT '{}', -- This has to be valid JSON
+    metadata LONGTEXT DEFAULT '{}', -- This has to be valid JSON
     historyTypeID INT(10) NOT NULL
 );
 
