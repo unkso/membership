@@ -1,7 +1,5 @@
 <?php namespace wcf\page;
 
-use wcf\data\membership\Membership;
-use wcf\data\membership\userhistory\PromotionHistory;
 use wcf\data\membership\userhistory\UserHistoryFactory;
 use wcf\system\WCF;
 

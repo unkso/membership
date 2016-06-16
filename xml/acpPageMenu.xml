@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com https://www.woltlab.com/XSD/maelstrom/acpMenu.xsd">
+    <import>
+
+        <acpmenuitem name="wcf.acp.menu.link.clan.membership">
+            <parent>wcf.acp.menu.link.clan</parent>
+            <sortorder>1</sortorder>
+        </acpmenuitem>
+
+        <acpmenuitem name="wcf.acp.menu.link.clan.membership.member.list">
+            <controller><![CDATA[wcf\acp\page\MembersListPage]]></controller>
+            <parent>wcf.acp.menu.link.clan.branch</parent>
+            <permissions>admin.clan.branch.canManageBranches</permissions>
+            <showorder>1</showorder>
+        </acpmenuitem>
+
+    </import>
+</data>
