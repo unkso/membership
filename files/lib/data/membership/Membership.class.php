@@ -11,9 +11,9 @@ use wcf\system\WCF;
 
 class Membership extends DatabaseObject
 {
-	protected static $databaseTableName = 'unkso_membership';
+    protected static $databaseTableName = 'unkso_membership';
 	
-	protected static $databaseTableIndexName = 'membershipID';
+    protected static $databaseTableIndexName = 'membershipID';
 
     public function getUser()
     {
