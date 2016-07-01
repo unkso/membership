@@ -46,20 +46,16 @@ class Scope extends DatabaseObject
     /**
      * @param Unit $tail
      * @param Unit $head
-     * @param array $unitsInBetween
+     * @param Unit[] $unitsInBetween
      * @return Unit[]
      */
     protected function moveToHead(Unit $tail, Unit $head, &$unitsInBetween = [])
     {
         $unitsInBetween[] = $tail;
 
-        if ($tail->unitID == $head->unitID) {
-            return $unitsInBetween;
-        }
-
         $parent = $tail->getParent();
-        if ($parent) {
-            $this->moveToHead($parent, $head, $unitsInBetween);
+        if ($parent && $tail->unitID != $head->unitID) {
+            return $this->moveToHead($parent, $head, $unitsInBetween);
         }
 
         return $unitsInBetween;
@@ -117,9 +113,9 @@ class Scope extends DatabaseObject
 
         $tableName = self::getDatabaseTableName() . '_tail';
 
-        $sql = "SELECT	*
-				FROM	$tableName
-				WHERE	unitScopeID = ?";
+        $sql = "SELECT  *
+                FROM    $tableName
+                WHERE   unitScopeID = ?";
 
         $statement = WCF::getDB()->prepareStatement($sql);
 
