@@ -14,8 +14,14 @@ class Scope extends DatabaseObject
 
     protected $tails = null;
 
-    public function unitsInScope()
+    protected $units = null;
+
+    public function unitsInScope($clear = false)
     {
+        if ($this->units && !$clear) {
+            return $this->units;
+        }
+
         $head = $this->getHeadUnit();
         $tails = $this->getTailUnits();
 
@@ -34,7 +40,7 @@ class Scope extends DatabaseObject
             }
         }
 
-        return $units;
+        return $this->units = $units;
     }
 
     /**
