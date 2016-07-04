@@ -32,6 +32,8 @@
 		<instruction type="sql">sql/install/040-unit.sql</instruction>
 		<instruction type="sql">sql/install/050-unitPosition.sql</instruction>
 		<instruction type="sql">sql/install/060-unitMember.sql</instruction>
+		<instruction type="sql">sql/install/070-unitScope.sql</instruction>
+		<instruction type="sql">sql/install/080-unitScopeTail.sql</instruction>
 		
 		<!-- User History Type PIP -->
 		<instruction type="packageInstallationPlugin">xml/pip.xml</instruction>

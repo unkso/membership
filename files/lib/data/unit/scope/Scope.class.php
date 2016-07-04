@@ -31,7 +31,7 @@ class Scope extends DatabaseObject
         foreach ($tails as $tail) {
             $unitsInBetween = $this->moveToHead($tail, $head);
             foreach ($unitsInBetween as $unit) {
-                if (in_array($unit->unitIDs, $unitIDs)) {
+                if (in_array($unit->unitID, $unitIDs)) {
                     continue;
                 }
 
@@ -116,22 +116,21 @@ class Scope extends DatabaseObject
         $sql = "SELECT  *
                 FROM    $tableName
                 WHERE   unitScopeID = ?";
-
         $statement = WCF::getDB()->prepareStatement($sql);
 
         $statement->execute([$this->unitScopeID]);
 
         $results = [];
-        foreach ($statement->fetchArray() as $result) {
+        while ($result = $statement->fetchArray()) {
             // It could be either a Unit or a Position within a unit.
             // Decide which one it is and return the correct object.
 
-            if ($result['tailUnitID']) {
+            if (isset($result['tailUnitID']) && $result['tailUnitID']) {
                 $results[] = new Unit($result['tailUnitID']);
                 continue;
             }
 
-            if ($result['tailUnitPositionID']) {
+            if (isset($result['tailUnitPositionID']) && $result['tailUnitID']) {
                 $results[] = new UnitPosition($result['tailUnitPositionID']);
                 continue;
             }

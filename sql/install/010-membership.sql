@@ -16,13 +16,13 @@ ALTER TABLE wcf1_unkso_membership
     REFERENCES wcf1_user (userID) 
         ON UPDATE CASCADE 
         ON DELETE CASCADE;
-        
+
 ALTER TABLE wcf1_unkso_membership 
     ADD FOREIGN KEY (previousMembershipID)
     REFERENCES wcf1_unkso_membership (membershipID) 
         ON UPDATE CASCADE 
         ON DELETE RESTRICT;
-        
+
 ALTER TABLE wcf1_unkso_membership 
     ADD FOREIGN KEY (currentRankID) 
     REFERENCES wcf1_unkso_rank (rankID) 

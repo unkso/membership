@@ -2,8 +2,8 @@
 CREATE TABLE wcf1_unkso_unit_scope_tail (
     unitScopeTailID INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     unitScopeID VARCHAR(255),
-    tailUnitID INT(10),           -- Tail end of scope
-    tailUnitPositionID INT(10),   -- Tail end of scope
+    tailUnitID INT(10),        -- Tail end of scope
+    tailUnitPositionID INT(10) -- Tail end of scope
 );
 
 -- Add Constraints for Foreign Keys

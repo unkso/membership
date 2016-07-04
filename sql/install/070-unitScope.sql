@@ -3,8 +3,8 @@ CREATE TABLE wcf1_unkso_unit_scope (
     unitScopeID INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
     title VARCHAR(255),
-    headUnitID INT(10),           -- Head end of scope
-    headUnitPositionID INT(10),   -- Head end of scope
+    headUnitID INT(10),        -- Head end of scope
+    headUnitPositionID INT(10) -- Head end of scope
 );
 
 -- Each unit has a head and 0..n tails

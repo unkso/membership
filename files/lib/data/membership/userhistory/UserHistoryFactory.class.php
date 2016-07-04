@@ -15,7 +15,8 @@ abstract class UserHistoryFactory
      */
     public static function makeHistory($id)
     {
-        $userHistory = new BasicUserHistory($id);
+        $userHistory = new BasicUserHistory(null);
+        $userHistory->historyTypeID = $id;
         $historyClass = $userHistory->getHistoryType()->classPath;
         
         return new $historyClass(null, null, $userHistory);

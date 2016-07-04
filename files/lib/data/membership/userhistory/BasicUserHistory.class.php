@@ -31,6 +31,10 @@ class BasicUserHistory extends DatabaseObject
 	{
 		parent::handleData($data);
 		
+		if (!isset($data['metadata']) || !strlen($data['metadata'])) {
+			$data['metadata'] = '{}';
+		}
+
 		$this->attributes = json_decode($data['metadata'], true);
 		
 		// If json_decode fails we still want to have an (empty) array.
