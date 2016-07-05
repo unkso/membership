@@ -6,30 +6,48 @@ use wcf\data\membership\userhistory\DemotionHistory;
 use wcf\data\membership\userhistory\JoinHistory;
 use wcf\data\membership\userhistory\PromotionHistory;
 use wcf\data\membership\userhistory\UserHistoryFactory;
+use wcf\data\rank\Rank;
 use wcf\data\user\User;
 use wcf\system\WCF;
 
 class Membership extends DatabaseObject
 {
     protected static $databaseTableName = 'unkso_membership';
-	
+
     protected static $databaseTableIndexName = 'membershipID';
 
     public function getUser()
     {
         return new User($this->userID);
     }
-    
+
     public function isRetired()
     {
         return $this->dischargeType == 'RET';
     }
-    
+
     public function isActive()
     {
         return is_null($this->dischargeDate);
     }
-    
+
+    public function getRank()
+    {
+        return new Rank($this->currentRankID);
+    }
+
+    public function getDisplayableUsername()
+    {
+        $prefix = '';
+
+        $rank = $this->getRank();
+        if ($rank) {
+            $prefix = $rank->prefix . '.';
+        }
+
+        return $prefix . $this->getUser()->getUsername();
+    }
+
     public function getRankAtTime($time)
     {
         $containsNewRank = [
@@ -57,8 +75,7 @@ class Membership extends DatabaseObject
 
         // Run through and pick the first one before the given time that has a 'rank' attribute
         $newest = null;
-        foreach ($changes as $change)
-        {
+        foreach ($changes as $change) {
             if ($change->date <= $time && isset($change->attributes['newRank'])) {
                 $newest = $change;
                 break;
@@ -74,7 +91,7 @@ class Membership extends DatabaseObject
     }
 
     /**
-     * @param User|null $user If the user is not provided, the currently logged in user will be assumed
+     * @param User|null $user If the user is not provided, the currently logged in user will be used
      * @returns Membership|null
      */
     public static function getCurrentMembership(User $user = null)
@@ -93,8 +110,25 @@ class Membership extends DatabaseObject
         $statement = WCF::getDB()->prepareStatement($sql);
 
         $statement->execute([$user->getUserID()]);
-        $row = $statement->fetchObject(Membership::class);
+        $row = $statement->fetchObject(self::class);
+
+        var_dump($row);
+        die();
 
         return $row;
+    }
+
+    public static function activeMemberships()
+    {
+        $tableName = self::getDatabaseTableName();
+        
+        $sql = "SELECT  *
+                FROM    $tableName
+                WHERE   dischargeDate IS NULL";
+
+        $statement = WCF::getDB()->prepareStatement($sql);
+        $statement->execute();
+
+        return $statement->fetchObjects(self::class);
     }
 }
