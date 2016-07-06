@@ -13,9 +13,11 @@
 
     This is the list of all current members
 
-    {foreach from=$members item=member}
-        <li>{$member->getDisplayableUsername()}</li>
-    {/foreach}
+    <ul>
+        {foreach from=$members item=member}
+            <li>{$member->getDisplayableUsername()}</li>
+        {/foreach}
+    </ul>
 </div>
 
 

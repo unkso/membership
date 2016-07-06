@@ -112,10 +112,26 @@ class Membership extends DatabaseObject
         $statement->execute([$user->getUserID()]);
         $row = $statement->fetchObject(self::class);
 
-        var_dump($row);
-        die();
-
         return $row;
+    }
+
+    public static function getAllMembershipsForUser(User $user)
+    {
+        if (!$user) {
+            return [];
+        }
+
+        $tableName = self::getDatabaseTableName();
+
+        $sql = "SELECT	*
+				FROM	$tableName
+				WHERE	userID = ?
+				ORDER BY membershipID DESC";
+
+        $statement = WCF::getDB()->prepareStatement($sql);
+
+        $statement->execute([$user->getUserID()]);
+        return $statement->fetchObjects(self::class);
     }
 
     public static function activeMemberships()

@@ -20,11 +20,15 @@
 	</requiredpackages>
 	
 	<instructions type="install">
+        <instruction type="acpTemplate">acptemplates.tar</instruction>
 		<instruction type="template">templates.tar</instruction>
 		<instruction type="file">files.tar</instruction>
+
 		<instruction type="language">language/*.xml</instruction>
-		<instruction type="pageMenu">xml/pageMenu.xml</instruction>
-				
+        <instruction type="pageMenu">xml/pageMenu.xml</instruction>
+        <instruction type="acpMenu">xml/acpMenu.xml</instruction>
+        <instruction type="templateListener">xml/templateListener.xml</instruction>
+
 		<!-- SQL Installation separated into multiple files for clarity -->
 		<instruction type="sql">sql/install/010-membership.sql</instruction>
 		<instruction type="sql">sql/install/020-userHistoryType.sql</instruction>

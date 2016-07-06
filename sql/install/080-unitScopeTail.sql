@@ -1,7 +1,7 @@
 -- Create the Unit Scope Tails table
 CREATE TABLE wcf1_unkso_unit_scope_tail (
     unitScopeTailID INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    unitScopeID VARCHAR(255),
+    unitScopeID INT(10),
     tailUnitID INT(10),        -- Tail end of scope
     tailUnitPositionID INT(10) -- Tail end of scope
 );
@@ -23,4 +23,4 @@ ALTER TABLE wcf1_unkso_unit_scope_tail
     ADD FOREIGN KEY (tailUnitPositionID)
     REFERENCES wcf1_unkso_unit_position (unitPositionID)
         ON UPDATE CASCADE
-        ON DELETE CASCADE;
+        ON DELETE RESTRICT;
