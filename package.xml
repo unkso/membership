@@ -27,7 +27,9 @@
 		<instruction type="language">language/*.xml</instruction>
         <instruction type="pageMenu">xml/pageMenu.xml</instruction>
         <instruction type="acpMenu">xml/acpMenu.xml</instruction>
+
         <instruction type="templateListener">xml/templateListener.xml</instruction>
+        <instruction type="eventListener">xml/eventListener.xml</instruction>
 
 		<!-- SQL Installation separated into multiple files for clarity -->
 		<instruction type="sql">sql/install/010-membership.sql</instruction>

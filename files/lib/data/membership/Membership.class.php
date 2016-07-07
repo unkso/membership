@@ -48,6 +48,16 @@ class Membership extends DatabaseObject
         return $prefix . $this->getUser()->getUsername();
     }
 
+    public function daysInClan()
+    {
+        $join  = date_create($this->joinDate);
+        $until = date_create($this->dischargeDate);
+
+        $interval = date_diff($join, $until);
+
+        return $interval->format('%a');
+    }
+
     public function getRankAtTime($time)
     {
         $containsNewRank = [

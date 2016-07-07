@@ -13,11 +13,21 @@
             <environment>admin</environment>
             <templatename>userAdd</templatename>
             <eventname>tabMenuTabs</eventname>
-            <templatecode><![CDATA[{
-                {if $action == 'edit'}
-					<li><a href="{@$__wcf->getAnchor('membershipForm')}">{lang}wcf.user.membership{/lang}</a></li>
-				{/if}
-            ]]></templatecode>
+            <templatecode><![CDATA[{{if $action == 'edit'}<li><a href="{@$__wcf->getAnchor('membershipForm')}">{lang}wcf.user.membership{/lang}</a></li>{/if}]]></templatecode>
+        </templatelistener>
+
+        <templatelistener name="javascriptInclude">
+            <environment>user</environment>
+            <templatename>headInclude</templatename>
+            <eventname>javascriptInclude</eventname>
+            <templatecode><![CDATA[<script data-relocate="true" src="{@$__wcf->getPath('wcf')}js/WCF.Award.js?v={@LAST_UPDATE_TIME}"></script>]]></templatecode>
+        </templatelistener>
+
+        <templatelistener name="javascriptInit">
+            <environment>user</environment>
+            <templatename>headIncludeJavascript</templatename>
+            <eventname>javascriptInit</eventname>
+            <templatecode><![CDATA[{include file='__unksoMembershipJavascriptInit' application='wcf'}]]></templatecode>
         </templatelistener>
 
     </import>
