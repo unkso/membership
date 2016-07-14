@@ -8,3 +8,4 @@ package:
         tarball:
             - files
             - templates
+            - acpTemplates: acptemplates
