@@ -1,6 +1,6 @@
 language: node_js
 node_js: "5"
-before_script: npm install -g wcf-utils
+before_script: npm install -g wcfutils
 script: wcfutils
 branches:
   only: master
@@ -9,7 +9,7 @@ git:
 env:
   global:
     - IDENTIFIER=com.clanunknownsoldiers.plugin.membership.tar
-    - FTP_HOST=ftp://thunderstorm.padarom.io/server/uploads/
+    - FTP_HOST=ftp://thunderstorm.padarom.io/
 notifications:
       email: false
 
