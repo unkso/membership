@@ -13,7 +13,7 @@
             <environment>admin</environment>
             <templatename>userAdd</templatename>
             <eventname>tabMenuTabs</eventname>
-            <templatecode><![CDATA[{{if $action == 'edit'}<li><a href="{@$__wcf->getAnchor('membershipForm')}">{lang}wcf.user.membership{/lang}</a></li>{/if}]]></templatecode>
+            <templatecode><![CDATA[{if $action == 'edit'}<li><a href="{@$__wcf->getAnchor('membershipForm')}">{lang}wcf.user.membership{/lang}</a></li>{/if}]]></templatecode>
         </templatelistener>
 
         <templatelistener name="javascriptInclude">
