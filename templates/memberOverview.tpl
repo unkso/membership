@@ -6,21 +6,20 @@
 </head>
 
 <body id="tpl{$templateName|ucfirst}">
-{include file='header' title='wcf.page.personnel.overview'|language}
+    {include file='header' title='wcf.page.personnel.overview'|language}
 
-<div class="container">
-    {include file='userNotice'}
+    <div class="container">
+        {include file='userNotice'}
 
-    This is the list of all current members
+        This is the list of all current members
 
-    <ul>
-        {foreach from=$members item=member}
-            <li>{$member->getDisplayableUsername()}</li>
-        {/foreach}
-    </ul>
-</div>
+        <ul>
+            {foreach from=$members item=member}
+                <li>{$member->getDisplayableUsername()}</li>
+            {/foreach}
+        </ul>
+    </div>
 
-
-{include file='footer'}
+    {include file='footer'}
 </body>
 </html>

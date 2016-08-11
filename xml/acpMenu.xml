@@ -5,7 +5,7 @@
 
         <acpmenuitem name="wcf.acp.menu.link.clan.membership">
             <parent>wcf.acp.menu.link.clan</parent>
-            <sortorder>1</sortorder>
+            <showorder>2</showorder>
         </acpmenuitem>
 
         <acpmenuitem name="wcf.acp.menu.link.clan.membership.member.list">
@@ -19,7 +19,7 @@
             <controller><![CDATA[wcf\acp\page\ImportMembershipsPage]]></controller>
             <parent>wcf.acp.menu.link.clan.membership</parent>
             <permissions>admin.clan.general.canImportMemberships</permissions>
-            <showorder>1</showorder>
+            <showorder>2</showorder>
         </acpmenuitem>
 
     </import>
