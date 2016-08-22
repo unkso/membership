@@ -30,5 +30,11 @@
             <templatecode><![CDATA[{include file='__unksoMembershipJavascriptInit' application='wcf'}]]></templatecode>
         </templatelistener>
 
+        <templatelistener name="showAwardsInSidebar">
+            <environment>user</environment>
+            <templatename>messageSidebar</templatename>
+            <eventname>afterCredits</eventname>
+            <templatecode><![CDATA[{include file='__unksoShowAwardsInSidebar' application='wcf'}]]></templatecode>
+        </templatelistener>
     </import>
 </data>
