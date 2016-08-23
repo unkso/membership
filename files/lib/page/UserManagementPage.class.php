@@ -7,7 +7,7 @@ use wcf\system\WCF;
 
 class UserManagementPage extends PersonnelPage
 {
-    public $activeMenuItem = 'wcf.page.personnel.management';
+    public $activeMenuItem = 'wcf.page.personnel.management.user';
 
     protected $user;
 

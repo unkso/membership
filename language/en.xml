@@ -3,7 +3,9 @@
     <category name="wcf.page">
         <item name="wcf.page.personnel.overview"><![CDATA[Clan Structure]]></item>
         <item name="wcf.page.personnel.retired"><![CDATA[Retired Members]]></item>
-        <item name="wcf.page.personnel.management"><![CDATA[Member Management]]></item>
-        <item name="wcf.page.personnel.management.title"><![CDATA[Member Management]]></item>
+        <item name="wcf.page.personnel.management.user"><![CDATA[Member Management]]></item>
+        <item name="wcf.page.personnel.management.user.title"><![CDATA[Member Management]]></item>
+        <item name="wcf.page.personnel.management.unit"><![CDATA[Unit Management]]></item>
+        <item name="wcf.page.personnel.management.unit.title"><![CDATA[Unit Management]]></item>
     </category>
 </language>

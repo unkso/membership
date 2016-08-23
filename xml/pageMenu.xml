@@ -16,12 +16,20 @@
             <sortorder>2</sortorder>
         </pagemenuitem>
 
-        <pagemenuitem name="wcf.page.personnel.management">
+        <pagemenuitem name="wcf.page.personnel.management.user">
             <controller><![CDATA[wcf\page\UserManagementPage]]></controller>
             <position>header</position>
             <parent>wcf.page.personnel</parent>
             <permissions>mod.clan.general.accessUserManagement</permissions>
             <sortorder>3</sortorder>
+        </pagemenuitem>
+
+        <pagemenuitem name="wcf.page.personnel.management.unit">
+            <controller><![CDATA[wcf\page\UnitManagementPage]]></controller>
+            <position>header</position>
+            <parent>wcf.page.personnel</parent>
+            <permissions>mod.clan.general.accessUnitManagement</permissions>
+            <sortorder>4</sortorder>
         </pagemenuitem>
 
     </import>
