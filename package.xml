@@ -40,6 +40,7 @@
 		<instruction type="sql">sql/install/060-unitMember.sql</instruction>
 		<instruction type="sql">sql/install/070-unitScope.sql</instruction>
 		<instruction type="sql">sql/install/080-unitScopeTail.sql</instruction>
+		<instruction type="sql">sql/install/090-issuedAward.sql</instruction>
 		
 		<!-- User History Type PIP -->
 		<instruction type="packageInstallationPlugin">xml/pip.xml</instruction>

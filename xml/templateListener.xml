@@ -2,6 +2,7 @@
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/templatelistener.xsd">
     <import>
 
+        <!-- User Edit Form in ACP -->
         <templatelistener name="userMembershipTabContent">
             <environment>admin</environment>
             <templatename>userAdd</templatename>
@@ -16,6 +17,19 @@
             <templatecode><![CDATA[{if $action == 'edit'}<li><a href="{@$__wcf->getAnchor('membershipForm')}">{lang}wcf.user.membership{/lang}</a></li>{/if}]]></templatecode>
         </templatelistener>
 
+        <!-- Award List in ACP -->
+        <templatelistener name="addIssueAwardIcon">
+            <environment>admin</environment>
+            <templatename>awardList</templatename>
+            <eventname>rowButtons</eventname>
+            <templatecode><![CDATA[
+                <a href="{link controller='AssignAward' id=$award->awardID}{/link}" title="Assign to user" class="jsTooltip">
+                    <span class="icon icon16 icon-pencil"></span>
+                </a>
+            ]]></templatecode>
+        </templatelistener>
+
+        <!-- Include Javascript-File -->
         <templatelistener name="javascriptInclude">
             <environment>user</environment>
             <templatename>headInclude</templatename>
@@ -23,6 +37,7 @@
             <templatecode><![CDATA[<script data-relocate="true" src="{@$__wcf->getPath('wcf')}js/WCF.Award.js?v={@LAST_UPDATE_TIME}"></script>]]></templatecode>
         </templatelistener>
 
+        <!-- Include Javascript Initialization -->
         <templatelistener name="javascriptInit">
             <environment>user</environment>
             <templatename>headIncludeJavascript</templatename>
@@ -30,6 +45,7 @@
             <templatecode><![CDATA[{include file='__unksoMembershipJavascriptInit' application='wcf'}]]></templatecode>
         </templatelistener>
 
+        <!-- Show User's awards in Sidebar -->
         <templatelistener name="showAwardsInSidebar">
             <environment>user</environment>
             <templatename>messageSidebar</templatename>

@@ -9,5 +9,12 @@
             <listenerclassname>wcf\system\event\listener\UserAddFormEventListener</listenerclassname>
         </eventlistener>
 
+        <eventlistener name="userMembershipTabContent">
+            <environment>user</environment>
+            <eventclassname>wcf\acp\form\UserEditForm</eventclassname>
+            <eventname>assignVariables</eventname>
+            <listenerclassname>wcf\system\event\listener\UserAddFormEventListener</listenerclassname>
+        </eventlistener>
+
     </import>
 </data>

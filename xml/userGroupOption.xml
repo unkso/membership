@@ -5,6 +5,10 @@
             <category name="mod.clan.recruiting">
                 <parent>mod.clan</parent>
             </category>
+
+            <category name="mod.clan.general">
+                <parent>mod.clan</parent>
+            </category>
         </categories>
 
         <options>
