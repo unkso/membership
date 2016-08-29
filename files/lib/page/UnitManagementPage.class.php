@@ -49,6 +49,8 @@ class UnitManagementPage extends SortablePage
     {
         // Validate
         $this->save();
+
+        $this->performAdditionalActions();
     }
 
     protected function save()
@@ -65,6 +67,29 @@ class UnitManagementPage extends SortablePage
         WCF::getTPL()->assign([
             'success' => true,
         ]);
+    }
+
+    protected function performAdditionalActions()
+    {
+        if (isset($_REQUEST['action-new'])) {
+            $unit = UnitEditor::create([
+                'name' => strtoupper(date('dMY hiA')),
+                'type' => 'fireteam',
+            ]);
+
+            $this->unitID = $unit->unitID;
+            return;
+        }
+
+        if (isset($_REQUEST['action-delete'])) {
+            $editor = new UnitEditor(new Unit($this->unitID));
+
+            $editor->delete();
+
+            WCF::getTPL()->assign([
+                'deleted' => true,
+            ]);
+        }
     }
 
     public function assignVariables()

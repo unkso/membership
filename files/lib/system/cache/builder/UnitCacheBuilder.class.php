@@ -3,6 +3,7 @@ namespace wcf\system\cache\builder;
 
 use wcf\data\unit\scope\Scope;
 use wcf\data\unit\Unit;
+use wcf\data\unit\UnitPosition;
 use wcf\system\WCF;
 
 class UnitCacheBuilder extends AbstractCacheBuilder
@@ -12,6 +13,7 @@ class UnitCacheBuilder extends AbstractCacheBuilder
         $data = [
             'units' => $this->getUnits(),
             'scopes' => $this->getScopes(),
+            'positions' => $this->getPositions(),
         ];
 
         return $data;
@@ -38,6 +40,19 @@ class UnitCacheBuilder extends AbstractCacheBuilder
         $statement->execute();
         while ($object = $statement->fetchObject(Scope::class)) {
             $data[$object->unitScopeID] = $object;
+        }
+
+        return $data;
+    }
+
+    protected function getPositions()
+    {
+        $data = [];
+        $sql = 'SELECT * FROM ' . UnitPosition::getDatabaseTableName() . ' ORDER BY unitPositionID ASC';
+        $statement = WCF::getDB()->prepareStatement($sql);
+        $statement->execute();
+        while ($object = $statement->fetchObject(UnitPosition::class)) {
+            $data[$object->unitPositionID] = $object;
         }
 
         return $data;

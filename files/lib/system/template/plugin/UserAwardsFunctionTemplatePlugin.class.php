@@ -6,7 +6,7 @@ use wcf\system\template\TemplateEngine;
 
 class UserAwardsFunctionTemplatePlugin implements IFunctionTemplatePlugin
 {
-    public function execute ($tagArgs, TemplateEngine $tplObj)
+    public function execute($tagArgs, TemplateEngine $tplObj)
     {
         $user = new User($tagArgs['userID']);
         $awards = IssuedAward::getHighestAwardedTiersForUser($user);

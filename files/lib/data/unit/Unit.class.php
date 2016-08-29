@@ -2,6 +2,7 @@
 namespace wcf\data\unit;
 
 use wcf\data\DatabaseObject;
+use wcf\system\WCF;
 
 class Unit extends DatabaseObject
 {
@@ -30,6 +31,15 @@ class Unit extends DatabaseObject
         }
 
         return new self($this->parentID);
+    }
+
+    public function getPositions()
+    {
+        $sql = 'SELECT * FROM ' . UnitPosition::getDatabaseTableName() . ' WHERE unitID = ? ORDER BY unitPositionID ASC';
+        $statement = WCF::getDB()->prepareStatement($sql);
+        $statement->execute([$this->unitID]);
+
+        return $statement->fetchObjects(UnitPosition::class);
     }
 
     public function getTypeDisplayName()

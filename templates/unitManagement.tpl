@@ -11,6 +11,10 @@
     <div class="container">
         {include file='userNotice'}
 
+        {if $deleted|isset}
+            <div class="alert alert-success">The unit has successfully been deleted.</div>
+        {/if}
+
         <div class="alert alert-info">
             Please <strong>always</strong> double-check your changes before saving, as some of the settings cannot be restored once changed.
         </div>
@@ -29,6 +33,7 @@
                     <div id="collapse{$accordionCount}" class="accordion-body collapse {if $activeAccordionID == $unit->unitID}in{/if}">
                         <div class="panel-body">
                             {assign var=hierarchy value=$unit->getHierarchy()}
+                            {assign var=positions value=$unit->getPositions()}
                             <form method="post" action="{link controller='UnitManagement'}{/link}">
                                 <input type="hidden" name="unitID" value="{$unit->unitID}">
 
@@ -40,22 +45,30 @@
                                     <h4 class="big marginBottom">Current information</h4>
 
                                     <dl>
-                                        <dt>
-                                            Internal ID
-                                        </dt>
-                                        <dd>
-                                            {$unit->unitID}
-                                        </dd>
+                                        <dt>Internal ID</dt>
+                                        <dd>{$unit->unitID}</dd>
                                     </dl>
+
                                     <dl>
-                                        <dt>
-                                            Hierarchy
-                                        </dt>
+                                        <dt style="line-height:24px;">Hierarchy</dt>
                                         <dd>
                                             <ul class="breadcrumb no-style">
-                                                {foreach from=$unit->getHierarchy() item=parent}
-                                                    <li>{$parent->name}</li>
-                                                {/foreach}
+                                                {foreach from=$unit->getHierarchy() item=parent}<li>{$parent->name}</li>{/foreach}
+                                            </ul>
+                                        </dd>
+                                    </dl>
+
+                                    <dl>
+                                        <dt style="line-height:24px;">Positions</dt>
+                                        <dd>
+                                            <ul class="list-inline comma-separated">
+                                                {if $positions|count}
+                                                    {foreach from=$positions item=position}
+                                                        <li>{$position->title}</li>
+                                                    {/foreach}
+                                                {else}
+                                                    <li>-</li>
+                                                {/if}
                                             </ul>
                                         </dd>
                                     </dl>
@@ -64,7 +77,7 @@
                                 <fieldset class="mediumMarginTop">
 
                                     <dl>
-                                        <dt>
+                                        <dt style="line-height:30px;">
                                             <label for="name">Name</label>
                                         </dt>
                                         <dd>
@@ -73,7 +86,7 @@
                                     </dl>
 
                                     <dl>
-                                        <dt>
+                                        <dt style="line-height:24px;">
                                             <label for="parentID">Direct parent</label>
                                         </dt>
                                         <dd>
@@ -88,7 +101,7 @@
                                     </dl>
 
                                     <dl>
-                                        <dt>
+                                        <dt style="line-height:24px;">
                                             <label for="type">Unit Type</label>
                                         </dt>
                                         <dd>
@@ -97,18 +110,18 @@
                                                     <option value="{$key}" {if $unit->type == $key}selected{/if}>{$display}</option>
                                                 {/foreach}
                                             </select>
-                                            <small>If you change the type of this unit, all additional info listed below will be deleted.</small>
+                                            <small>If you change the type of this unit, all additional data entered below will be deleted.</small>
                                         </dd>
                                     </dl>
 
                                     <dl>
-                                        <dt>
+                                        <dt style="line-height:30px;">
                                             <label>Actions</label>
                                         </dt>
                                         <dd>
-                                            <button class="btn btn-default btn-sm">Manage Positions</button>
-                                            <button class="btn btn-default btn-sm">Manage Members</button>
-                                            <button class="btn btn-danger btn-sm">Delete Unit</button>
+                                            <button class="btn btn-default btn-sm" name="action-positions">Manage Positions</button>
+                                            <button class="btn btn-default btn-sm" name="action-members">Manage Members</button>
+                                            <button class="btn btn-danger btn-sm" name="action-delete">Delete Unit</button>
                                         </dd>
                                     </dl>
 
@@ -124,10 +137,12 @@
             {/foreach}
         </div>
 
-        <div class="formSubmit">
-            <button type="submit" class="btn btn-secondary btn-flat">Add new unit</button>
-            {@SECURITY_TOKEN_INPUT_TAG}
-        </div>
+        <form method="post" action="{link controller='UnitManagement'}{/link}">
+            <div class="formSubmit">
+                <button type="submit" class="btn btn-secondary" name="action-new">Add new unit</button>
+                {@SECURITY_TOKEN_INPUT_TAG}
+            </div>
+        </form>
 
     </div>
 

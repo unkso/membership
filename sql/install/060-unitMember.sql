@@ -9,7 +9,7 @@ CREATE TABLE wcf1_unkso_unit_member (
 -- Add Constraints for Foreign Keys
 ALTER TABLE wcf1_unkso_unit_member 
     ADD FOREIGN KEY (unitID)
-    REFERENCES wcf1_unkso_unit (parentID) 
+    REFERENCES wcf1_unkso_unit (unitID)
         ON UPDATE CASCADE 
         ON DELETE RESTRICT;
         

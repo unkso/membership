@@ -5,7 +5,7 @@ use wcf\data\DatabaseObject;
 
 class UnitPosition extends DatabaseObject
 {
-    protected static $databaseTableName = 'unkso_position';
+    protected static $databaseTableName = 'unkso_unit_position';
 	
     protected static $databaseTableIndexName = 'unitPositionID';
 

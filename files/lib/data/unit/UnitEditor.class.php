@@ -13,4 +13,10 @@ class UnitEditor extends DatabaseObjectEditor implements IEditableCachedObject
     {
         UnitCacheBuilder::getInstance()->reset();
     }
+
+    public function delete()
+    {
+        // TODO: Delete references to this unit!
+        parent::delete();
+    }
 }

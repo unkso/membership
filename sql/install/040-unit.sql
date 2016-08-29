@@ -3,8 +3,9 @@ CREATE TABLE wcf1_unkso_unit (
     unitID INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     -- Add icon!
     parentID INT(10),
-    name VARCHAR(255) NOT NULL
-    `type` VARCHAR(50) NOT NULL
+    name VARCHAR(255) NOT NULL,
+    type VARCHAR(50) NOT NULL,
+    data TEXT,
 );
 
 -- Add Constraints for Foreign Keys
