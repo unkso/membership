@@ -52,5 +52,13 @@
             <eventname>afterCredits</eventname>
             <templatecode><![CDATA[{include file='__unksoShowAwardsInSidebar' application='wcf'}]]></templatecode>
         </templatelistener>
+
+        <!-- Show User's awards in Sidebar -->
+        <templatelistener name="showMembershipInfoBlock">
+            <environment>user</environment>
+            <templatename>user</templatename>
+            <eventname>beforeUserInfoBlock</eventname>
+            <templatecode><![CDATA[{include file='__unksoMembershipInfoBlock' application='wcf'}]]></templatecode>
+        </templatelistener>
     </import>
 </data>

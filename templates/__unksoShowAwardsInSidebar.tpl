@@ -10,17 +10,17 @@
     {content}
     {foreach from=$awards item=tier}
         {counter name='displayedAwardCount'|concat:$counterCounter assign=awardCount print=false}
-        {if $awardCount <= 6}
-            <div class="col-md-6 nopadding award jsTooltip" title="{$tier->getAward()->title}{$tier->levelSuffix}">
-                <img src="{$tier->ribbonURL}">
+        {if $awardCount <= 9}
+            <div class="col-md-4 nopadding award jsTooltip" data-delay="200" title="{$tier->getAward()->title}{$tier->levelSuffix}">
+                <img src="{$tier->ribbonURL}" style="width:100%;">
             </div>
         {else}
             {counter name='moreAwardCount'|concat:$counterCounter assign=moreAwards print=false}
             {if $moreAwards|isset && $moreAwards == 1}
                 <div class="col-md-12 hiddenAwards nopadding">
             {/if}
-            <div class="col-md-6 additional award nopadding jsTooltip" title="{$tier->getAward()->title}{$tier->levelSuffix}">
-                <img src="{$tier->ribbonURL}">
+            <div class="col-md-4 additional award nopadding jsTooltip" data-delay="200" title="{$tier->getAward()->title}{$tier->levelSuffix}">
+                <img src="{$tier->ribbonURL}" style="width:100%;">
             </div>
         {/if}
     {/foreach}
@@ -29,7 +29,7 @@
     {if $moreAwards|isset && $moreAwards > 0}
         </div>
 
-        <div class="divider divider-style-4 divider-icon-xs">
+        <div class="divider divider-style-4 divider-icon-xs" style="top:10px;">
             <a>
                 <i class="fa fa-chevron-down"></i>
             </a>

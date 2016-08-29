@@ -100,31 +100,6 @@ class Membership extends DatabaseObject
         return $newest->attributes['newRank'];
     }
 
-    /**
-     * @param User|null $user If the user is not provided, the currently logged in user will be used
-     * @returns Membership|null
-     */
-    public static function getCurrentMembership(User $user = null)
-    {
-        if (!$user) {
-            $user = WCF::getUser();
-        }
-
-        $tableName = self::getDatabaseTableName();
-
-        $sql = "SELECT	*
-				FROM	$tableName
-				WHERE	userID = ?
-				ORDER BY membershipID DESC LIMIT 1";
-
-        $statement = WCF::getDB()->prepareStatement($sql);
-
-        $statement->execute([$user->getUserID()]);
-        $row = $statement->fetchObject(self::class);
-
-        return $row;
-    }
-
     public static function getAllMembershipsForUser(User $user)
     {
         if (!$user) {
