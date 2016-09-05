@@ -5,7 +5,7 @@ CREATE TABLE wcf1_unkso_unit (
     parentID INT(10),
     name VARCHAR(255) NOT NULL,
     type VARCHAR(50) NOT NULL,
-    data TEXT,
+    extraData TEXT,
 );
 
 -- Add Constraints for Foreign Keys

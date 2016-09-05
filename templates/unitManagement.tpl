@@ -124,7 +124,29 @@
                                             <button class="btn btn-danger btn-sm" name="action-delete">Delete Unit</button>
                                         </dd>
                                     </dl>
+                                </fieldset>
 
+                                {if $unit->type == 'branch' || $unit->type == 'command'}
+                                    <fieldset>
+                                        <legend>Type-specific settings</legend>
+
+                                        <dl>
+                                            <dt style="line-height:24px;">
+                                                <label for="rankscheme">Use rank scheme from</label>
+                                            </dt>
+                                            <dd>
+                                                <select name="rankscheme" id="rankscheme">
+                                                    {foreach from=$rankBranches item=branch}
+                                                        <option value="{$branch->branchID}" {if $unit->extraData|count && $unit->extraData['rankscheme'] == $branch->branchID}selected{/if}>{$branch->name}</option>
+                                                    {/foreach}
+                                                </select>
+                                                <small>This is a default for all members in this unit. It can be overwritten for individual members.</small>
+                                            </dd>
+                                        </dl>
+                                    </fieldset>
+                                {/if}
+
+                                </fieldset>
                                     <div class="formSubmit">
                                         <button type="submit" class="btn btn-primary btn-3d">Save changes</button>
                                         {@SECURITY_TOKEN_INPUT_TAG}

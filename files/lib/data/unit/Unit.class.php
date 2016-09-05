@@ -10,11 +10,17 @@ class Unit extends DatabaseObject
 
     protected static $databaseTableIndexName = 'unitID';
 
+    public function __construct($id, array $row = null, DatabaseObject $object = null)
+    {
+        parent::__construct($id, $row, $object);
+
+        $this->extraData = json_decode($this->extraData, true);
+    }
+
     public function supportedTypes()
     {
         return [
-            'clan' => 'Clan',
-            'thingy' => 'Something that I don\'t know the name for',
+            'command' => 'Command',
             'branch' => 'Branch',
             'department' => 'Department',
             'mos' => 'MOS',
