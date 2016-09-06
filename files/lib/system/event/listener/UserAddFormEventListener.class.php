@@ -1,4 +1,6 @@
-<?php namespace wcf\system\event\listener;
+<?php
+
+namespace wcf\system\event\listener;
 
 use wcf\acp\form\UserEditForm;
 use wcf\data\membership\Membership;

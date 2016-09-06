@@ -1,4 +1,5 @@
 <?php
+
 namespace wcf\data\membership\userhistory;
 
 class TransferHistory extends BasicUserHistory

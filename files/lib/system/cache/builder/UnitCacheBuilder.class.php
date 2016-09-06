@@ -1,4 +1,5 @@
 <?php
+
 namespace wcf\system\cache\builder;
 
 use wcf\data\unit\scope\Scope;

@@ -1,4 +1,5 @@
 <?php
+
 namespace wcf\data\unit\scope;
 
 use wcf\data\DatabaseObject;

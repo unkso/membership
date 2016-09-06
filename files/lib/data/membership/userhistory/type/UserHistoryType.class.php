@@ -1,5 +1,7 @@
 <?php
+
 namespace wcf\data\membership\userhistory\type;
+
 use wcf\data\DatabaseObject;
 
 class UserHistoryType extends DatabaseObject

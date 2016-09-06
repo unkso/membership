@@ -1,4 +1,5 @@
 <?php
+
 namespace wcf\data\membership\userhistory;
 
 class DemotionHistory extends BasicUserHistory

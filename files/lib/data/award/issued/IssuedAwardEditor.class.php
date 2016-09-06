@@ -1,6 +1,9 @@
-<?php namespace wcf\data\award\issued;
+<?php
+
+namespace wcf\data\award\issued;
 
 use wcf\data\DatabaseObjectEditor;
+use wcf\system\cache\builder\AwardCacheBuilder;
 
 class IssuedAwardEditor extends DatabaseObjectEditor
 {

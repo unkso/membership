@@ -1,8 +1,8 @@
 <?php
+
 namespace wcf\data\unit;
 
 use wcf\data\DatabaseObject;
-use wcf\system\WCF;
 
 class Unit extends DatabaseObject
 {
@@ -36,16 +36,25 @@ class Unit extends DatabaseObject
             return null;
         }
 
+        $cache = UnitCache::getInstance()->getUnits();
+        if ($cache[$this->parentID]) {
+            return $cache[$this->parentID];
+        }
+
         return new self($this->parentID);
     }
 
     public function getPositions()
     {
-        $sql = 'SELECT * FROM ' . UnitPosition::getDatabaseTableName() . ' WHERE unitID = ? ORDER BY unitPositionID ASC';
-        $statement = WCF::getDB()->prepareStatement($sql);
-        $statement->execute([$this->unitID]);
+        $cached = UnitCache::getInstance()->getPositions();
+        $objects = [];
+        foreach ($cached as $position) {
+            if ($position->unitID == $this->unitID) {
+                $objects[] = $position;
+            }
+        }
 
-        return $statement->fetchObjects(UnitPosition::class);
+        return $objects;
     }
 
     public function getTypeDisplayName()

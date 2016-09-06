@@ -1,4 +1,6 @@
-<?php namespace wcf\system\event\listener;
+<?php
+
+namespace wcf\system\event\listener;
 
 use wcf\data\membership\ClanMember;
 use wcf\data\user\User;

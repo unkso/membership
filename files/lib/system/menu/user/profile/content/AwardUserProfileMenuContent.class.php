@@ -1,4 +1,6 @@
-<?php namespace wcf\system\menu\user\profile\content;
+<?php
+
+namespace wcf\system\menu\user\profile\content;
 
 use wcf\system\SingletonFactory;
 use wcf\system\WCF;

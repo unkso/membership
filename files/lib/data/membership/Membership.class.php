@@ -1,4 +1,5 @@
 <?php
+
 namespace wcf\data\membership;
 
 use wcf\data\DatabaseObject;

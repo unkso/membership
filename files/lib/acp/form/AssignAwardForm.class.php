@@ -1,4 +1,5 @@
 <?php
+
 namespace wcf\acp\form;
 
 use wcf\data\award\action\AwardTierAction;

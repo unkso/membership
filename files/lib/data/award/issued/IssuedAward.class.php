@@ -1,4 +1,6 @@
-<?php namespace wcf\data\award\issued;
+<?php
+
+namespace wcf\data\award\issued;
 
 use wcf\data\award\Award;
 use wcf\data\award\AwardCache;

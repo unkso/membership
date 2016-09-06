@@ -1,4 +1,6 @@
-<?php namespace wcf\data\membership;
+<?php
+
+namespace wcf\data\membership;
 
 use wcf\data\DatabaseObjectDecorator;
 use wcf\data\user\User;

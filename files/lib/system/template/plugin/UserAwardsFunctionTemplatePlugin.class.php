@@ -1,4 +1,6 @@
-<?php namespace wcf\system\template\plugin;
+<?php
+
+namespace wcf\system\template\plugin;
 
 use wcf\data\award\issued\IssuedAward;
 use wcf\data\user\User;

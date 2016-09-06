@@ -1,5 +1,7 @@
 <?php
+
 namespace wcf\system\package\plugin;
+
 use wcf\system\WCF;
 
 class UserHistoryTypePackageInstallationPlugin extends AbstractXMLPackageInstallationPlugin 

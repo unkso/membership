@@ -1,10 +1,10 @@
 <?php
+
 namespace wcf\data\membership\userhistory;
 
 use wcf\data\DatabaseObject;
 use wcf\system\WCF;
 use wcf\system\template\TemplateScriptingCompiler;
-use wcf\system\template\TemplateEngine;
 use wcf\data\membership\userhistory\type\UserHistoryType;
 use wcf\data\membership\Membership;
 

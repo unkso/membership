@@ -1,4 +1,5 @@
 <?php
+
 namespace wcf\page;
 
 use wcf\data\unit\Unit;

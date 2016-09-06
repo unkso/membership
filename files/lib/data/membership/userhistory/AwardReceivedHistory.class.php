@@ -1,5 +1,8 @@
 <?php
+
 namespace wcf\data\membership\userhistory;
+
+use wcf\data\award\Award;
 
 class AwardReceivedHistory extends BasicUserHistory
 {

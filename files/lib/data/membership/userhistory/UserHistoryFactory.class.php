@@ -1,4 +1,5 @@
 <?php
+
 namespace wcf\data\membership\userhistory;
 
 use wcf\data\membership\Membership;
@@ -11,7 +12,7 @@ abstract class UserHistoryFactory
 {    
     /**
      * We're here to make history!
-     * @return AbstractUserHistory
+     * @return BasicUserHistory
      */
     public static function makeHistory($id)
     {

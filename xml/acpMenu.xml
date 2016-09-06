@@ -15,12 +15,5 @@
             <showorder>1</showorder>
         </acpmenuitem>
 
-        <acpmenuitem name="wcf.acp.menu.link.clan.membership.import">
-            <controller><![CDATA[wcf\acp\page\ImportMembershipsPage]]></controller>
-            <parent>wcf.acp.menu.link.clan.membership</parent>
-            <permissions>admin.clan.general.canImportMemberships</permissions>
-            <showorder>2</showorder>
-        </acpmenuitem>
-
     </import>
 </data>

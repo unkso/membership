@@ -1,4 +1,6 @@
-<?php namespace wcf\page;
+<?php
+
+namespace wcf\page;
 
 use wcf\system\WCF;
 use wcf\data\membership\Membership;
@@ -19,9 +21,9 @@ class PersonnelOverviewPage extends AbstractPage
 
         $activeMembers = Membership::activeMemberships();
 
-        WCF::getTPL()->assign(array(
+        WCF::getTPL()->assign([
             'example' => $description,
             'members' => $activeMembers,
-        ));
+        ]);
     }
 }
