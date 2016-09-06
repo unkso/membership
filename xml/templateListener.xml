@@ -54,10 +54,18 @@
         </templatelistener>
 
         <!-- Show User's awards in Sidebar -->
-        <templatelistener name="showMembershipInfoBlock">
+        <templatelistener name="showMembershipQuickViewBlock">
             <environment>user</environment>
             <templatename>user</templatename>
             <eventname>beforeUserInfoBlock</eventname>
+            <templatecode><![CDATA[{include file='__unksoMembershipQuickViewBlock' application='wcf'}]]></templatecode>
+        </templatelistener>
+
+        <!-- Show User's info -->
+        <templatelistener name="showMembershipInfoBlock">
+            <environment>user</environment>
+            <templatename>user</templatename>
+            <eventname>afterUserInfoSection</eventname>
             <templatecode><![CDATA[{include file='__unksoMembershipInfoBlock' application='wcf'}]]></templatecode>
         </templatelistener>
     </import>

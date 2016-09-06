@@ -41,14 +41,3 @@
     {/if}
     {/hascontent}
 </div>
-
-<script data-relocate="true">
-    $(document).ready(function() {
-        $("#awards-{$counterCounter}").on("click", ".divider a", function() {
-            $("#awards-{$counterCounter} .hiddenAwards").slideToggle(250);
-            $("#awards-{$counterCounter} .divider .fa").toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
-            $("#awards-{$counterCounter} .divider .countLabel").toggle();
-            $("#awards-{$counterCounter} .divider .hideLabel").toggle();
-        });
-    });
-</script>
