@@ -2,26 +2,18 @@
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com https://www.woltlab.com/XSD/maelstrom/pageMenu.xsd">
     <import>
 
-        <pagemenuitem name="wcf.page.personnel.mymember">
-            <controller><![CDATA[wcf\page\MyMembershipPage]]></controller>
-            <position>header</position>
-            <parent>wcf.page.personnel</parent>
-            <permissions>user.clan.canAccessMembershipFeatures</permissions>
-            <sortorder>1</sortorder>
-        </pagemenuitem>
-
         <pagemenuitem name="wcf.page.personnel.overview">
             <controller><![CDATA[wcf\page\PersonnelOverviewPage]]></controller>
             <position>header</position>
             <parent>wcf.page.personnel</parent>
-            <sortorder>2</sortorder>
+            <sortorder>1</sortorder>
         </pagemenuitem>
 
         <pagemenuitem name="wcf.page.personnel.retired">
             <controller><![CDATA[wcf\page\RetiredMembersPage]]></controller>
             <position>header</position>
             <parent>wcf.page.personnel</parent>
-            <sortorder>3</sortorder>
+            <sortorder>2</sortorder>
         </pagemenuitem>
 
         <pagemenuitem name="wcf.page.personnel.management.user">
@@ -29,7 +21,7 @@
             <position>header</position>
             <parent>wcf.page.personnel</parent>
             <permissions>mod.clan.general.accessUserManagement</permissions>
-            <sortorder>4</sortorder>
+            <sortorder>3</sortorder>
         </pagemenuitem>
 
         <pagemenuitem name="wcf.page.personnel.management.unit">
@@ -37,7 +29,7 @@
             <position>header</position>
             <parent>wcf.page.personnel</parent>
             <permissions>mod.clan.general.accessUnitManagement</permissions>
-            <sortorder>5</sortorder>
+            <sortorder>4</sortorder>
         </pagemenuitem>
 
     </import>

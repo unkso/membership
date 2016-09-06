@@ -26,10 +26,10 @@
             </ul>
             <div class="tab-content">
                 <div id="tab-units" class="tab-pane active">
-                    {include file='unitManagementUnitTab'}
+                    {include file='unitManagementTab_Unit'}
                 </div>
                 <div id="tab-scopes" class="tab-pane">
-                    {include file='unitManagementScopeTab'}
+                    {include file='unitManagementTab_Scope'}
                 </div>
             </div>
         </div>
