@@ -1,43 +1,22 @@
 {userAwards assign='awards' userID=$user->userID}
-{counter name='counterCounter' assign=counterCounter print=false}
 
-<div class="userAwards hidden-xs" id="awards-{$counterCounter}">
-    {hascontent}
-        <dl class="plain dataList">
-            <dt><a href="http://clanunknownsoldiers.com/hqdev/search/?types%5B%5D=com.woltlab.wbb.post&amp;userID=1" class="">Awards</a></dt>
-        </dl>
+{foreach from=$awards item=tier}
+<div class="row" style="margin-bottom:20px;">
+    <div class="col-md-2 text-center">
+        <img class="img-responsive" src="{$tier->ribbonURL}"><br>
+        <img class="img-responsive" src="{$tier->getAward()->awardURL}">
+    </div>
+    <div class="col-md-10">
+        <h3 class="big">{$tier->getAward()->title}{$tier->levelSuffix}</h3>
 
-    {content}
-    {foreach from=$awards item=tier}
-        {counter name='displayedAwardCount'|concat:$counterCounter assign=awardCount print=false}
-        {if $awardCount <= 9}
-            <div class="col-md-4 nopadding award jsTooltip" data-delay="200" title="{$tier->getAward()->title}{$tier->levelSuffix}">
-                <img src="{$tier->ribbonURL}" style="width:100%;">
-            </div>
-        {else}
-            {counter name='moreAwardCount'|concat:$counterCounter assign=moreAwards print=false}
-            {if $moreAwards|isset && $moreAwards == 1}
-                <div class="col-md-12 hiddenAwards nopadding">
-            {/if}
-            <div class="col-md-4 additional award nopadding jsTooltip" data-delay="200" title="{$tier->getAward()->title}{$tier->levelSuffix}">
-                <img src="{$tier->ribbonURL}" style="width:100%;">
-            </div>
-        {/if}
-    {/foreach}
-    {/content}
+        <p class="marginTopSmall"><strong>Description:</strong></p>
+        <p>{$tier->getAward()->description}</p>
 
-    {if $moreAwards|isset && $moreAwards > 0}
-        </div>
+        <p class="marginTopSmall"><strong>Issue Reason:</strong></p>
+        <p>Reason</p>
 
-        <div class="divider divider-style-4 divider-icon-xs" style="top:10px;">
-            <a>
-                <i class="fa fa-chevron-down"></i>
-            </a>
-            <p class="countLabel">(Show {#$moreAwards} more)</p>
-            <p class="hideLabel">(Hide last {#$moreAwards})</p>
-        </div>
-
-        {assign var=moreAwards value=0}
-    {/if}
-    {/hascontent}
+        <p class="marginTopSmall"><strong>Issue Date:</strong></p>
+        <p>Date</p>
+    </div>
 </div>
+{/foreach}
