@@ -1,5 +1,10 @@
 {userAwards assign='awards' userID=$user->userID}
 
+{if !$awards|count}
+    <div class="alert alert-info">
+        This member has not earned any awards so far.
+    </div>
+{/if}
 {foreach from=$awards item=tier}
     <div class="row" style="margin-bottom:20px;">
         <div class="col-md-2 text-center">

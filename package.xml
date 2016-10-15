@@ -26,15 +26,10 @@
 
 		<instruction type="language">language/*.xml</instruction>
         <instruction type="acpMenu">xml/acpMenu.xml</instruction>
-		<instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
         <instruction type="templateListener">xml/templateListener.xml</instruction>
         <instruction type="eventListener">xml/eventListener.xml</instruction>
 
 		<!-- SQL Installation separated into multiple files for clarity -->
 		<instruction type="sql">sql/install/090-issuedAward.sql</instruction>
-		
-		<!-- User History Type PIP -->
-		<instruction type="packageInstallationPlugin">xml/pip.xml</instruction>
-		<instruction type="userHistoryType">xml/userHistoryTypes.xml</instruction>
 	</instructions>
 </package>

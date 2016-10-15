@@ -20,7 +20,7 @@ class UserPageEventListener implements IParameterizedEventListener
     public function execute($eventObj, $className, $eventName, array &$parameters)
     {
         WCF::getTPL()->assign([
-            'clanmember' => new ClanMember(new User($eventObj->userID)),
+            // 'clanmember' => new ClanMember(new User($eventObj->userID)),
         ]);
     }
 }
