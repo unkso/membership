@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <package name="com.clanunknownsoldiers.plugin.membership" xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/package.xsd">
 	<packageinformation>
-		<packagename>=US= Membership System</packagename>
-		<packagedescription>The Unknown Soldiers Membership System that serves as a link between Ranks, Awards and Branches</packagedescription>
-		<version>0.1.0</version>
-		<date>2016-05-14</date>
+		<packagename>=US= Membership System (Stripped)</packagename>
+		<packagedescription>The Unknown Soldiers Membership System that serves as a link between Ranks, Awards and Branches. In it's current version it is stripped down to awards display.</packagedescription>
+		<version>0.0.1</version>
+		<date>2016-10-15</date>
 	</packageinformation>
 	
 	<authorinformation>
 		<author>Christopher Mühl</author>
-		<authorurl>http://www.padarom.de/</authorurl>
+		<authorurl>https://www.padarom.io/</authorurl>
 	</authorinformation>
 	
 	<requiredpackages>
@@ -25,21 +25,12 @@
 		<instruction type="file">files.tar</instruction>
 
 		<instruction type="language">language/*.xml</instruction>
-        <instruction type="pageMenu">xml/pageMenu.xml</instruction>
         <instruction type="acpMenu">xml/acpMenu.xml</instruction>
 		<instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
         <instruction type="templateListener">xml/templateListener.xml</instruction>
         <instruction type="eventListener">xml/eventListener.xml</instruction>
 
 		<!-- SQL Installation separated into multiple files for clarity -->
-		<instruction type="sql">sql/install/010-membership.sql</instruction>
-		<instruction type="sql">sql/install/020-userHistoryType.sql</instruction>
-		<instruction type="sql">sql/install/030-userHistory.sql</instruction>
-		<instruction type="sql">sql/install/040-unit.sql</instruction>
-		<instruction type="sql">sql/install/050-unitPosition.sql</instruction>
-		<instruction type="sql">sql/install/060-unitMember.sql</instruction>
-		<instruction type="sql">sql/install/070-unitScope.sql</instruction>
-		<instruction type="sql">sql/install/080-unitScopeTail.sql</instruction>
 		<instruction type="sql">sql/install/090-issuedAward.sql</instruction>
 		
 		<!-- User History Type PIP -->

@@ -7,12 +7,5 @@
             <showorder>2</showorder>
         </acpmenuitem>
 
-        <acpmenuitem name="wcf.acp.menu.link.clan.membership.member.list">
-            <controller><![CDATA[wcf\acp\page\MembersListPage]]></controller>
-            <parent>wcf.acp.menu.link.clan.membership</parent>
-            <permissions>admin.clan.branch.canManageBranches</permissions>
-            <showorder>1</showorder>
-        </acpmenuitem>
-
     </import>
 </data>

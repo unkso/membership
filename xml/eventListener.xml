@@ -2,13 +2,6 @@
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/eventlistener.xsd">
     <import>
 
-        <eventlistener name="userMembershipTabContent">
-            <environment>admin</environment>
-            <eventclassname>wcf\acp\form\UserEditForm</eventclassname>
-            <eventname>assignVariables</eventname>
-            <listenerclassname>wcf\system\event\listener\UserAddFormEventListener</listenerclassname>
-        </eventlistener>
-
         <eventlistener name="userPageAssignVariables">
             <environment>user</environment>
             <eventclassname>wcf\page\UserPage</eventclassname>
