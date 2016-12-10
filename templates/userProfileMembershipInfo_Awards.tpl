@@ -8,8 +8,10 @@
 {foreach from=$awards item=tier}
     <div class="row" style="margin-bottom:20px;">
         <div class="col-md-2 text-center">
-            <img class="img-responsive" src="{$tier->ribbonURL}"><br>
-            <img class="img-responsive" src="{$tier->getAward()->awardURL}">
+            <img src="{$tier->ribbonURL}"><br>
+            {if $tier->getAward()->awardURL}
+                <img src="{$tier->getAward()->awardURL}">
+            {/if}
         </div>
         <div class="col-md-10">
             <h3 class="big">{$tier->getAward()->title}{$tier->levelSuffix}</h3>

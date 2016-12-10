@@ -16,54 +16,51 @@ class IssuedAward extends DatabaseObject
 
     protected static $databaseTableIndexName = 'issuedAwardID';
 
+    public function getTier()
+    {
+        $cache = AwardCacheBuilder::getInstance()->getData([], 'tiers');
+        return $cache[$this->tierID];
+    }
+
     public static function getAllAwardedTiersForUser(User $user)
     {
         $issued = self::getDatabaseTableName();
         $tier = AwardTier::getDatabaseTableName();
         $award = Award::getDatabaseTableName();
 
-        $sql = "SELECT $issued.tierID FROM $issued 
+        $sql = "SELECT $issued.issuedAwardID, $issued.tierID FROM $issued 
                   JOIN $tier ON $tier.tierID = $issued.tierID 
                   JOIN $award ON $tier.awardID = $award.awardID 
                  WHERE $issued.userID = ?
-                ORDER BY ($award.relevance * 100 + $tier.level) DESC";
+                ORDER BY ($award.relevance * 100 + $tier.level) ASC";
         $statement = WCF::getDB()->prepareStatement($sql);
         $statement->execute([$user->userID]);
 
         $tierList = AwardCacheBuilder::getInstance()->getData([], 'tiers');
+        $issued = [];
         $tiers = [];
         while ($statement && $row = $statement->fetchArray()) {
-            $tiers[] = $tierList[$row['tierID']];
+            $issued[] = new self($row['issuedAwardID']);
         }
 
-        return $tiers;
+        return $issued;
     }
 
     public static function getHighestAwardedTiersForUser(User $user)
     {
-        $tiers = self::getAllAwardedTiersForUser($user);
-        $awards = [];
+        $issuedAwards = self::getAllAwardedTiersForUser($user);
+        $highestAwards = [];
 
-        foreach ($tiers as $key => $tier) {
-            if (isset($awards[$tier->awardID])) {
-                $highest = $awards[$tier->awardID];
-
-                if ($highest['level'] < $tier->level) {
-                    unset($tiers[$highest['key']]);
-                    continue;
-                } elseif ($highest['level'] > $tier->level) {
-                    unset($tiers[$key]);
-                    continue;
-                }
+        foreach ($issuedAwards as $key => $issuedAward) {
+            $tier = $issuedAward->getTier();
+            if (isset($highestAwards[$tier->awardID]) && $highestAwards[$tier->awardID]->level >= $tier->level) {
+                continue;
             }
 
-            $awards[$tier->awardID] = [
-                'level' => $tier->level,
-                'key' => $key,
-            ];
+            $highestAwards[$tier->awardID] = $issuedAward;
         }
 
-        return $tiers;
+        return $highestAwards;
     }
 
     public static function getAwardsForUser(User $user)
@@ -71,6 +68,7 @@ class IssuedAward extends DatabaseObject
         $tiers = self::getAllAwardedTiersForUser($user);
         $awards = [];
         foreach ($tiers as $tier) {
+            $tier = $tier->getTier();
             $awards[] = $tier->awardID;
         }
 

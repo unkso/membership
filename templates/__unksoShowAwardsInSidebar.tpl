@@ -4,11 +4,12 @@
 <div class="userAwards hidden-xs" id="awards-{$counterCounter}">
     {hascontent}
         <dl class="plain dataList">
-            <dt><a href="http://clanunknownsoldiers.com/hqdev/search/?types%5B%5D=com.woltlab.wbb.post&amp;userID=1" class="">Awards</a></dt>
+            <dt>Awards</dt>
         </dl>
 
     {content}
-    {foreach from=$awards item=tier}
+    {foreach from=$awards item=issue}
+        {assign var='tier' value=$issue->getTier()}
         {counter name='displayedAwardCount'|concat:$counterCounter assign=awardCount print=false}
         {if $awardCount <= 9}
             <div class="col-md-4 nopadding award jsTooltip" data-delay="200" title="{$tier->getAward()->title}{$tier->levelSuffix}">
