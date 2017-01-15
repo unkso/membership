@@ -31,16 +31,18 @@ class IssuedAward extends DatabaseObject
         $action->executeAction();
         $award = $action->getReturnValues()['returnValues'];
 
-        $notificationObject = new AwardReceivedUserNotificationObject($award);
-        UserNotificationHandler::getInstance()->fireEvent(
-            'awardReceived',
-            'com.clanunknownsoldiers.award.received',
-            $notificationObject,
-            [$award->userID],
-            [
-                'tierID' => $award->tierID,
-            ]
-        );
+        if ($notify) {
+            $notificationObject = new AwardReceivedUserNotificationObject($award);
+            UserNotificationHandler::getInstance()->fireEvent(
+                'awardReceived',
+                'com.clanunknownsoldiers.award.received',
+                $notificationObject,
+                [$award->userID],
+                [
+                    'tierID' => $award->tierID,
+                ]
+            );
+        }
     }
 
     public function getTier()
