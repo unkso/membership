@@ -8,6 +8,8 @@ use wcf\data\award\AwardTier;
 use wcf\data\DatabaseObject;
 use wcf\data\user\User;
 use wcf\system\cache\builder\AwardCacheBuilder;
+use wcf\system\user\notification\object\AwardReceivedUserNotificationObject;
+use wcf\system\user\notification\UserNotificationHandler;
 use wcf\system\WCF;
 
 class IssuedAward extends DatabaseObject
@@ -15,6 +17,31 @@ class IssuedAward extends DatabaseObject
     protected static $databaseTableName = 'unkso_issued_award';
 
     protected static $databaseTableIndexName = 'issuedAwardID';
+
+    public static function giveToUser(User $user, AwardTier $tier, $description, $date, $notify = true)
+    {
+        $action = new IssuedAwardAction([], 'create', [
+            'data' => [
+                'userID' => $user->getUserID(),
+                'tierID' => $tier->getObjectID(),
+                'description' => $description,
+                'date' => $date,
+            ]
+        ]);
+        $action->executeAction();
+        $award = $action->getReturnValues()['returnValues'];
+
+        $notificationObject = new AwardReceivedUserNotificationObject($award);
+        UserNotificationHandler::getInstance()->fireEvent(
+            'awardReceived',
+            'com.clanunknownsoldiers.award.received',
+            $notificationObject,
+            [$award->userID],
+            [
+                'tierID' => $award->tierID,
+            ]
+        );
+    }
 
     public function getTier()
     {

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/objectType.xsd">
+    <import>
+        <type>
+            <name>com.clanunknownsoldiers.award.received</name>
+            <definitionname>com.woltlab.wcf.notification.objectType</definitionname>
+            <classname><![CDATA[wcf\system\user\notification\object\type\AwardReceivedUserNotificationObjectType]]></classname>
+            <category>com.woltlab.wcf.user</category>
+        </type>
+    </import>
+</data>
