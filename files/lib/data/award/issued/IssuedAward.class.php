@@ -17,6 +17,33 @@ class IssuedAward extends DatabaseObject
     protected static $databaseTableName = 'unkso_issued_award';
 
     protected static $databaseTableIndexName = 'issuedAwardID';
+    
+    public static function giveToUser(User $user, AwardTier $tier, $description, $date, $notify = true)
+    {
+        $action = new IssuedAwardAction([], 'create', [
+            'data' => [
+                'userID' => $user->getUserID(),
+                'tierID' => $tier->getObjectID(),
+                'description' => $description,
+                'date' => $date,
+            ]
+        ]);
+        $action->executeAction();
+        $award = $action->getReturnValues()['returnValues'];
+
+        if ($notify) {
+            $notificationObject = new AwardReceivedUserNotificationObject($award);
+            UserNotificationHandler::getInstance()->fireEvent(
+                'awardReceived',
+                'com.clanunknownsoldiers.award.received',
+                $notificationObject,
+                [$award->userID],
+                [
+                    'tierID' => $award->tierID,
+                ]
+            );
+        }
+    }
 
     public function getName()
     {
@@ -35,9 +62,9 @@ class IssuedAward extends DatabaseObject
         $tier = AwardTier::getDatabaseTableName();
         $award = Award::getDatabaseTableName();
 
-        $sql = "SELECT $issued.issuedAwardID, $issued.tierID FROM $issued 
-                  JOIN $tier ON $tier.tierID = $issued.tierID 
-                  JOIN $award ON $tier.awardID = $award.awardID 
+        $sql = "SELECT $issued.issuedAwardID, $issued.tierID FROM $issued
+                  JOIN $tier ON $tier.tierID = $issued.tierID
+                  JOIN $award ON $tier.awardID = $award.awardID
                  WHERE $issued.userID = ?
                 ORDER BY ($award.relevance * 100 + $tier.level) ASC";
         $statement = WCF::getDB()->prepareStatement($sql);

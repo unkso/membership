@@ -1,4 +1,4 @@
-{include file='header' pageTitle='wcf.acp.award.action.'|concat:$action}
+{include file='header' pageTitle='wcf.acp.award.assign.title'}
 
 <script data-relocate="true">
 	//<![CDATA[
@@ -11,7 +11,7 @@
 </script>
 
 <header class="boxHeadline">
-	<h1>{lang}wcf.acp.award.action.assign{/lang}</h1>
+	<h1>{lang}wcf.acp.award.assign{/lang}</h1>
 </header>
 
 {include file='formError'}
@@ -38,10 +38,10 @@
 			<legend>{lang}wcf.acp.award.action.general{/lang}</legend>
 
 			<dl>
-				<dt><label for="username">{lang}wcf.acp.award.action.username{/lang}</label></dt>
+				<dt><label for="username">{lang}wcf.acp.award.assign.username{/lang}</label></dt>
 				<dd>
-					<input id="user" name="userID" value="{$userID|or:''}" type="text" class="medium" />
-					{if $errorField == 'title'}
+					<input id="user" name="username" value="{$username}" type="text" class="medium" />
+					{if $errorField == 'username'}
 						<small class="innerError">
 							{lang}wcf.global.form.error.{$errorType}{/lang}
 						</small>
@@ -50,16 +50,16 @@
 			</dl>
 
 			<dl>
-				<dt><label for="awardCategory">{lang}wcf.acp.award.action.category{/lang}</label></dt>
+				<dt><label for="tierID">{lang}wcf.acp.award.assign.tier{/lang}</label></dt>
 				<dd>
 					<select name="tierID" id="tierID">
 						{assign var=tiers value=$award->getTiers()}
 						{foreach from=$tiers item=tier}
-							<option value="{@$tier->tierID}"{if $tier->tierID == 5} selected="selected"{/if}>{$award->title}{$tier->levelSuffix}</option>
+							<option value="{@$tier->tierID}"{if $tier->tierID == $tierID} selected="selected"{/if}>{$award->title}{$tier->levelSuffix}</option>
 						{/foreach}
 					</select>
-					<small>{lang}wcf.acp.award.action.category.description{/lang}</small>
-					{if $errorField == 'categoryID'}
+					<small>{lang}wcf.acp.award.assign.tier.description{/lang}</small>
+					{if $errorField == 'tierID'}
 						<small class="innerError">
 							{lang}wcf.global.form.error.{$errorType}{/lang}
 						</small>
@@ -68,9 +68,9 @@
 			</dl>
 
 			<dl>
-				<dt><label for="awardDescription">{lang}wcf.acp.award.action.description{/lang}</label></dt>
+				<dt><label for="awardDescription">{lang}wcf.acp.award.assign.description{/lang}</label></dt>
 				<dd>
-					<textarea id="awardDescription" name="description" cols="40" rows="5">{$object->description|or:''}</textarea>
+					<textarea id="awardDescription" name="description" cols="40" rows="5">{$description}</textarea>
 					{if $errorField == 'description'}
 						<small class="innerError">
 							{lang}wcf.global.form.error.{$errorType}{/lang}
@@ -80,11 +80,11 @@
 			</dl>
 
 			<dl>
-				<dt><label for="date">Effective at</label></dt>
+				<dt><label for="date">{lang}wcf.acp.award.assign.date{/lang}</label></dt>
 				<dd>
 					<input type="date" id="date" name="date" class="jsDatePicker" value="{$date}" />
-					<small>The date at which the award is being awarded.</small>
-					{if $errorField == 'relevance'}
+					<small>{lang}wcf.acp.award.assign.date.description{/lang}</small>
+					{if $errorField == 'date'}
 						<small class="innerError">
 							{lang}wcf.global.form.error.{$errorType}{/lang}
 						</small>
@@ -95,13 +95,8 @@
 			<dl>
 				<dt></dt>
 				<dd>
-					<label><input type="checkbox" name="sendMessage" value="1"{if $sendMessage} checked="checked"{/if} /> {lang}wcf.acp.award.action.isActive{/lang}</label>
-					<small>Do you want to send a notification to the user that he has received this award?</small>
-					{if $errorField == 'isDisabled'}
-						<small class="innerError">
-							{lang}wcf.global.form.error.{$errorType}{/lang}
-						</small>
-					{/if}
+					<label><input type="checkbox" name="notify" value="1"{if $notify} checked="checked"{/if} /> {lang}wcf.acp.award.assign.notify{/lang}</label>
+					<small>{lang}wcf.acp.award.assign.notify.description{/lang}</small>
 				</dd>
 			</dl>
 
