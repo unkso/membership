@@ -3,7 +3,7 @@
 	<packageinformation>
 		<packagename>=US= Membership System (Stripped)</packagename>
 		<packagedescription>The Unknown Soldiers Membership System that serves as a link between Ranks, Awards and Branches. In it's current version it is stripped down to awards display.</packagedescription>
-		<version>0.0.1</version>
+		<version>0.1.0</version>
 		<date>2016-10-15</date>
 	</packageinformation>
 	
@@ -18,18 +18,25 @@
 		<requiredpackage minversion="0.1.0">com.clanunknownsoldiers.plugin.awards</requiredpackage>
 		<requiredpackage minversion="0.1.0">com.clanunknownsoldiers.plugin.ranks</requiredpackage>
 	</requiredpackages>
-	
+
 	<instructions type="install">
-        <instruction type="acpTemplate">acptemplates.tar</instruction>
+		<instruction type="acpTemplate">acptemplates.tar</instruction>
 		<instruction type="template">templates.tar</instruction>
 		<instruction type="file">files.tar</instruction>
 
 		<instruction type="language">language/*.xml</instruction>
-        <instruction type="acpMenu">xml/acpMenu.xml</instruction>
-        <instruction type="templateListener">xml/templateListener.xml</instruction>
-        <instruction type="eventListener">xml/eventListener.xml</instruction>
+		<instruction type="acpMenu">xml/acpMenu.xml</instruction>
+		<instruction type="templateListener">xml/templateListener.xml</instruction>
+		<instruction type="eventListener">xml/eventListener.xml</instruction>
 
 		<!-- SQL Installation separated into multiple files for clarity -->
 		<instruction type="sql">sql/install/090-issuedAward.sql</instruction>
+	</instructions>
+
+	<instructions type="update" fromversion="0.0.4">
+		<instruction type="file">files.tar</instruction>
+
+		<instruction type="templateListener">xml/templateListener.xml</instruction>
+		<instruction type="eventListener">xml/eventListener.xml</instruction>
 	</instructions>
 </package>

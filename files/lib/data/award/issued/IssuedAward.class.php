@@ -8,6 +8,8 @@ use wcf\data\award\AwardTier;
 use wcf\data\DatabaseObject;
 use wcf\data\user\User;
 use wcf\system\cache\builder\AwardCacheBuilder;
+use wcf\system\user\notification\object\AwardReceivedUserNotificationObject;
+use wcf\system\user\notification\UserNotificationHandler;
 use wcf\system\WCF;
 
 class IssuedAward extends DatabaseObject
@@ -15,6 +17,11 @@ class IssuedAward extends DatabaseObject
     protected static $databaseTableName = 'unkso_issued_award';
 
     protected static $databaseTableIndexName = 'issuedAwardID';
+
+    public function getName()
+    {
+        return $this->getTier()->getName();
+    }
 
     public function getTier()
     {

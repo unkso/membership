@@ -8,4 +8,35 @@
         <item name="wcf.page.personnel.management.unit"><![CDATA[Management: Units]]></item>
         <item name="wcf.page.personnel.management.unit.title"><![CDATA[Unit Management]]></item>
     </category>
+
+    <category name="wcf.acp">
+        <item name="wcf.acp.award.assign.title">Assign award</item>
+        <item name="wcf.acp.award.assign">Assign an award to a user</item>
+        <item name="wcf.acp.award.assign.username">Username</item>
+        <item name="wcf.acp.award.assign.tier">Tier</item>
+        <item name="wcf.acp.award.assign.award">Award</item>
+        <item name="wcf.acp.award.assign.tier.description">Only the highest tier awarded to the user will be shown, so you won't have to remove older tiers.</item>
+        <item name="wcf.acp.award.assign.description">Description</item>
+        <item name="wcf.acp.award.assign.date">Date</item>
+        <item name="wcf.acp.award.assign.date.description">When was the user awarded?</item>
+        <item name="wcf.acp.award.assign.notify">Notify user</item>
+        <item name="wcf.acp.award.assign.notify.description">If checked, the user will receive a notification for his new award.</item>
+    </category>
+
+    <category name="wcf.unkso">
+        <item name="wcf.unkso.award.notification.title">You received an award!</item>
+        <item name="wcf.unkso.award.notification.message">
+            <![CDATA[{@$author->getAnchorTag()} gave you an award: "{@$awardTitle}"]]>
+        </item>
+    </category>
+
+    <category name="wcf.user.option">
+        <item name="wcf.user.option.category.awards"><![CDATA[Awards]]></item>
+        <item name="wcf.user.option.category.awards.award"><![CDATA[Award / Tier]]></item>
+        <item name="wcf.user.option.category.awards.date"><![CDATA[Awarded Date]]></item>
+    </category>
+
+    <category name="wcf.acp.menu">
+        <item name="wcf.acp.menu.link.user.giveAward"><![CDATA[Give Award]]></item>
+    </category>
 </language>

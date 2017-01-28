@@ -8,10 +8,33 @@
             <eventname>rowButtons</eventname>
             <templatecode><![CDATA[
                 <a href="{link controller='AssignAward' id=$award->awardID}{/link}" title="Assign to user" class="jsTooltip">
-                    <span class="icon icon16 icon-pencil"></span>
+                    <span class="icon icon16 icon-trophy"></span>
                 </a>
             ]]></templatecode>
         </templatelistener>
+
+        <!-- User Edit Form in ACP -->
+        <templatelistener name="userAwardsTabContent">
+            <environment>admin</environment>
+            <templatename>userAdd</templatename>
+            <eventname>tabMenuContent</eventname>
+            <templatecode><![CDATA[{include file='userAwardsTabContent' application='wcf'}]]></templatecode>
+        </templatelistener>
+
+        <templatelistener name="userAwardsTab">
+            <environment>admin</environment>
+            <templatename>userAdd</templatename>
+            <eventname>tabMenuTabs</eventname>
+            <templatecode><![CDATA[{if $action == 'edit'}<li><a href="{@$__wcf->getAnchor('userAwards')}">{lang}wcf.user.option.category.awards{/lang}</a></li>{/if}]]></templatecode>
+        </templatelistener>
+
+        <templatelistener name="userAwardsAwardButton">
+            <environment>admin</environment>
+            <templatename>userAdd</templatename>
+            <eventname>contentNavigationButtons</eventname>
+            <templatecode><![CDATA[{if $action == 'edit' && $canAssignAwards}<li><a href="{link controller='GiveUserAward' id=$userID}{/link}" class="button"><span class="icon icon16 icon-trophy"></span> <span>{lang}wcf.acp.menu.link.user.giveAward{/lang}</span></a></li>{/if}]]></templatecode>
+        </templatelistener>
+
 
         <!-- Include Javascript-File -->
         <templatelistener name="javascriptInclude">
