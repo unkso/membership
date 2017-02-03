@@ -1,4 +1,12 @@
 {if $action == 'edit'}
+    <script data-relocate="true">
+        //<![CDATA[
+        $(function() {
+            new WCF.Action.Delete('wcf\\data\\award\\issued\\IssuedAwardAction', '.jsTemplateRow');
+        });
+        //]]>
+    </script>
+
     <div id="userAwards" class="container containerPadding tabMenuContent hidden">
 
         <!-- List of awards -->
@@ -6,6 +14,7 @@
             <header>
                 <h2>This member's awards <span class="badge badgeInverse">{#$awards|count}</span></h2>
             </header>
+
             <table class="table">
                 <thead>
                     <tr>
@@ -22,10 +31,14 @@
                     <tr class="jsTemplateRow">
                         <td class="columnIcon">
                             {if $canAssignAwards}
-                                <span class="icon icon16 icon-pencil disabled" title="{lang}wcf.global.button.edit{/lang} (Not yet functional)"></span>
-                                <span class="icon icon16 icon-remove disabled" title="{lang}wcf.global.button.delete{/lang} (Not yet functional)"></span>
+                                <a href="{link controller='EditGivenAward' id=$issue->issuedAwardID}{/link}" title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip"><span class="icon icon16 icon-pencil"></span></a>
                             {else}
                                 <span class="icon icon16 icon-pencil disabled" title="{lang}wcf.global.button.edit{/lang}"></span>
+                            {/if}
+
+                            {if $canDeleteAwards}
+                                <span class="icon icon16 icon-remove jsDeleteButton jsTooltip pointer" title="{lang}wcf.global.button.delete{/lang}" data-object-id="{@$issue->issuedAwardID}" data-confirm-message="{lang}wcf.unkso.acp.award.delete.sure{/lang}"></span>
+                            {else}
                                 <span class="icon icon16 icon-remove disabled" title="{lang}wcf.global.button.delete{/lang}"></span>
                             {/if}
 

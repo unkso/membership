@@ -28,6 +28,7 @@ class UserAddFormAwardEventListener implements IParameterizedEventListener
 
         WCF::getTPL()->assign([
             'canAssignAwards' => WCF::getSession()->getPermission('admin.clan.award.canIssueAwards'),
+            'canDeleteAwards' => WCF::getSession()->getPermission('admin.clan.award.canDeleteIssuedAwards'),
             'awards' => $awards,
         ]);
     }

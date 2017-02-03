@@ -10,17 +10,26 @@
     </category>
 
     <category name="wcf.acp">
-        <item name="wcf.acp.award.assign.title">Assign award</item>
-        <item name="wcf.acp.award.assign">Assign an award to a user</item>
+        <item name="wcf.acp.award.assign.add">Assign an award to a user</item>
+        <item name="wcf.acp.award.assign.edit">Edit a user's award</item>
+        <item name="wcf.acp.award.assign.title.add">Assign award</item>
+        <item name="wcf.acp.award.assign.title.edit">Edit user's award</item>
         <item name="wcf.acp.award.assign.username">Username</item>
         <item name="wcf.acp.award.assign.tier">Tier</item>
         <item name="wcf.acp.award.assign.award">Award</item>
         <item name="wcf.acp.award.assign.tier.description">Only the highest tier awarded to the user will be shown, so you won't have to remove older tiers.</item>
         <item name="wcf.acp.award.assign.description">Description</item>
+        <item name="wcf.acp.award.assign.description.description"><![CDATA[HTML is allowed for <i>formatting</i> purposes.]]></item>
         <item name="wcf.acp.award.assign.date">Date</item>
         <item name="wcf.acp.award.assign.date.description">When was the user awarded?</item>
         <item name="wcf.acp.award.assign.notify">Notify user</item>
         <item name="wcf.acp.award.assign.notify.description">If checked, the user will receive a notification for his new award.</item>
+        <item name="wcf.acp.award.assign.confirm">I confirm that the action I'm about to perform is correct.</item>
+    </category>
+
+    <category name="wcf.acp.group">
+        <item name="wcf.acp.group.option.admin.clan.award.canIssueAwards"><![CDATA[Can issue awards]]></item>
+        <item name="wcf.acp.group.option.admin.clan.award.canDeleteIssuedAwards"><![CDATA[Can delete issued awards]]></item>
     </category>
 
     <category name="wcf.unkso">
@@ -28,6 +37,7 @@
         <item name="wcf.unkso.award.notification.message">
             <![CDATA[{@$author->getAnchorTag()} gave you an award: "{@$awardTitle}"]]>
         </item>
+        <item name="wcf.unkso.acp.award.delete.sure">You are about to delete an award given to a user. This action is irrevocable. Do you want to continue?</item>
     </category>
 
     <category name="wcf.user.option">
@@ -39,4 +49,13 @@
     <category name="wcf.acp.menu">
         <item name="wcf.acp.menu.link.user.giveAward"><![CDATA[Give Award]]></item>
     </category>
+
+    <category name="wcf.acp.menu">
+        <item name="wcf.global.form.tier.error.existing"><![CDATA[The user already has this tier. Please choose a different one or edit the existing one on the user page.]]></item>
+        <item name="wcf.global.form.tier.error.higher"><![CDATA[The user already has a higher tier of this award. If you want to continue to give him this lower tier, please confirm below.]]></item>
+        <item name="wcf.global.form.tier.error.skip"><![CDATA[The tier you're trying to award is more than one level higher than the highest one the user has received. Maybe you skipped one? Please confirm below if you want to give it anyways.]]></item>
+        <item name="wcf.global.form.tier.error.skip.null"><![CDATA[The user doesn't yet have any tiers of this award. He might not be eligible for this higher tier at this point. Please confirm below if you want to give it anyways.]]></item>
+    </category>
+
+
 </language>

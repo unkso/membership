@@ -1,4 +1,4 @@
-{include file='header' pageTitle='wcf.acp.award.assign.title'}
+{include file='header' pageTitle='wcf.acp.award.assign.title.'|concat:$action}
 
 <script data-relocate="true">
     WCF.Search.Award = WCF.Search.Base.extend({
@@ -56,7 +56,7 @@
 </script>
 
 <header class="boxHeadline">
-	<h1>{lang}wcf.acp.award.assign{/lang}</h1>
+	<h1>{lang}wcf.acp.award.assign.{$action}{/lang}</h1>
 </header>
 
 {if $success|isset}
@@ -75,7 +75,7 @@
 	</nav>
 </div>
 
-<form method="post" action="{link controller='GiveUserAward' id=$user->getUserID()}{/link}">
+<form method="post" action="{if $action == 'add'}{link controller='GiveUserAward' id=$user->getUserID()}{/link}{else}{link controller='EditGivenAward' id=$issuedID}{/link}{/if}">
 	<div class="container containerPadding marginTop">
 		<fieldset>
 			<legend>{lang}wcf.acp.award.action.general{/lang}</legend>
@@ -90,7 +90,7 @@
 			<dl>
 				<dt><label for="award">{lang}wcf.acp.award.assign.award{/lang}</label></dt>
 				<dd>
-					<input id="award" name="award" type="text" class="medium" {if $tier}value="{$tier->getAward()->title}"{/if} />
+					<input id="award" name="award" {if $action == 'edit'}readonly{/if} type="text" class="medium" {if $tier}value="{$tier->getAward()->title}"{/if} />
                     {if $errorField == 'award'}
 						<small class="innerError">
                             {lang}wcf.global.form.error.{$errorType}{/lang}
@@ -102,26 +102,36 @@
 			<dl>
 				<dt><label for="tier">{lang}wcf.acp.award.assign.tier{/lang}</label></dt>
 				<dd>
-					<select id="tier" name="tierID" {if !$tier}disabled{/if}>
+					<select id="tier" name="tierID" {if !$tier || $action == 'edit'}disabled{/if}>
 						{if $tier}
 							{foreach from=$tier->getAward()->getTiers() item=$object}
 								<option value="{$object->tierID}" {if $object->tierID == $tier->tierID}selected{/if}>{$object->getName()}</option>
 							{/foreach}
 						{/if}
 					</select>
-					<small>You will need to select an award above before available tiers are shown.</small>
+                    {if $action == 'add'}<small>You will need to select an award above before available tiers are shown.</small>{/if}
                     {if $errorField == 'tierID'}
 						<small class="innerError">
-                            {lang}wcf.global.form.error.{$errorType}{/lang}
+                            {lang}wcf.global.form.tier.error.{$errorType}{/lang}
 						</small>
                     {/if}
 				</dd>
 			</dl>
 
+			{if $confirm|isset && $confirm}
+			<dl>
+				<dt></dt>
+				<dd>
+					<label><input type="checkbox" name="confirm" value="1"/> {lang}wcf.acp.award.assign.confirm{/lang}</label>
+				</dd>
+			</dl>
+            {/if}
+
 			<dl>
 				<dt><label for="awardDescription">{lang}wcf.acp.award.assign.description{/lang}</label></dt>
 				<dd>
 					<textarea id="awardDescription" name="description" cols="40" rows="5">{$description}</textarea>
+					<small>{lang}wcf.acp.award.assign.description.description{/lang}</small>
                     {if $errorField == 'description'}
 						<small class="innerError">
                             {lang}wcf.global.form.error.{$errorType}{/lang}
@@ -143,6 +153,7 @@
 				</dd>
 			</dl>
 
+			{if $action == 'add'}
 			<dl>
 				<dt></dt>
 				<dd>
@@ -150,6 +161,7 @@
 					<small>{lang}wcf.acp.award.assign.notify.description{/lang}</small>
 				</dd>
 			</dl>
+            {/if}
 
 			<div class="formSubmit">
 				<input type="submit" value="{lang}wcf.global.button.submit{/lang}" accesskey="s" />

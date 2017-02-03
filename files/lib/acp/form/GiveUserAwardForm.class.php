@@ -69,11 +69,18 @@ class GiveUserAwardForm extends AbstractForm
      */
     public $notify = false;
 
+    /**
+     * Whether the user has confirmed extraordinary changes
+     * @var bool
+     */
+    public $confirm = false;
+
     public function assignVariables()
     {
         parent::assignVariables();
 
         WCF::getTPL()->assign([
+            'action' => 'add',
             'user' => $this->user,
             'tier' => $this->tier,
             'tierID' => $this->tierID,
@@ -102,6 +109,7 @@ class GiveUserAwardForm extends AbstractForm
         if (isset($_POST['description'])) $this->description = StringUtil::trim($_POST['description']);
         if (isset($_POST['date'])) $this->date = StringUtil::trim($_POST['date']);
         if (isset($_POST['notify'])) $this->notify = StringUtil::trim($_POST['notify']);
+        if (isset($_POST['confirm'])) $this->confirm = StringUtil::trim($_POST['confirm']);
     }
 
     public function validate()
@@ -122,6 +130,58 @@ class GiveUserAwardForm extends AbstractForm
         if (empty($this->date)) {
             throw new UserInputException('date');
         }
+
+        if ($this->userHasTierAlready()) {
+            throw new UserInputException('tierID', 'existing');
+        }
+
+        if (($tierError = $this->tierDoesNotMatch()) && !$this->confirm) {
+            WCF::getTPL()->assign('confirm', true);
+            throw new UserInputException('tierID', $tierError);
+        }
+    }
+
+    protected function tierDoesNotMatch()
+    {
+        $givenAward = $this->tier->awardID;
+        $givenLevel = $this->tier->level;
+
+        $tiers = IssuedAward::getHighestAwardedTiersForUser($this->user);
+        $tiers = array_map(function ($issued) { return $issued->getTier(); }, $tiers);
+
+        // If user doesn't have any tier of the award, return
+        if (!isset($tiers[$givenAward]) && $givenLevel == 1) return false;
+
+        // User doesn't have the award, but high level is to be given
+        if (!isset($tiers[$givenAward]) && $givenLevel > 1) {
+            return 'skip.null';
+        }
+
+        $receivedLevel = $tiers[$givenAward]->level;
+
+        // Already has a higher tier
+        if ($receivedLevel > $givenLevel) {
+            return 'higher';
+        }
+
+        // Highest existing tier is more than one smaller
+        if ($givenLevel > $receivedLevel && abs($givenLevel - $receivedLevel) > 1) {
+            return 'skip';
+        }
+
+        return false;
+    }
+
+    protected function userHasTierAlready()
+    {
+        $tiers = IssuedAward::getAllAwardedTiersForUser($this->user);
+        foreach ($tiers as $tier) {
+            if ($tier->tierID == $this->tierID) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function save()
@@ -132,6 +192,7 @@ class GiveUserAwardForm extends AbstractForm
         $tier = $this->tier;
 
         IssuedAward::giveToUser($user, $tier, $this->description, $this->date, $this->notify);
+        $this->saved();
 
         // Reset values
         $this->tier = null;
