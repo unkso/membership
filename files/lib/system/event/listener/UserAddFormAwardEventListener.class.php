@@ -20,7 +20,7 @@ class UserAddFormAwardEventListener implements IParameterizedEventListener
     public function execute($eventObj, $className, $eventName, array &$parameters)
     {
         $userID = $eventObj->userID;
-        $awards = IssuedAward::getHighestAwardedTiersForUser(new User($userID));
+        $awards = IssuedAward::getAllAwardedTiersForUser(new User($userID));
 
         usort($awards, function ($a, $b) {
             return ($a->date > $b->date) ? -1 : 1;

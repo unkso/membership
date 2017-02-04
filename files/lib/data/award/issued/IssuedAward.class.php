@@ -43,6 +43,13 @@ class IssuedAward extends DatabaseObject
                 ]
             );
         }
+
+        return $award;
+    }
+
+    public function getUser()
+    {
+        return new User($this->userID);
     }
 
     public function getName()

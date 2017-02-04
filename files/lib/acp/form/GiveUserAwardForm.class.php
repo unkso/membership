@@ -75,6 +75,11 @@ class GiveUserAwardForm extends AbstractForm
      */
     public $confirm = false;
 
+    /**
+     * @var IssuedAward
+     */
+    public $givenAward = null;
+
     public function assignVariables()
     {
         parent::assignVariables();
@@ -188,10 +193,7 @@ class GiveUserAwardForm extends AbstractForm
     {
         parent::save();
 
-        $user = $this->user;
-        $tier = $this->tier;
-
-        IssuedAward::giveToUser($user, $tier, $this->description, $this->date, $this->notify);
+        $this->givenAward = IssuedAward::giveToUser($this->user, $this->tier, $this->description, $this->date, $this->notify);
         $this->saved();
 
         // Reset values
