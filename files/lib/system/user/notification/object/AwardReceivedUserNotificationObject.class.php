@@ -18,7 +18,7 @@ class AwardReceivedUserNotificationObject extends DatabaseObjectDecorator implem
     public function getTitle()
     {
         $tier = $this->getDecoratedObject();
-        return $tier->getAward()->title . $tier->levelSuffix;
+        return $tier->getAward()->title;
     }
 
     public function getURL()

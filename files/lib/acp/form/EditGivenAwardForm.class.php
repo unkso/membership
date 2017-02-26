@@ -5,6 +5,7 @@ namespace wcf\acp\form;
 use wcf\data\award\issued\IssuedAward;
 use wcf\data\award\issued\IssuedAwardAction;
 use wcf\data\user\User;
+use wcf\system\cache\builder\IssuedAwardCacheBuilder;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\UserInputException;
 use wcf\system\WCF;
@@ -25,11 +26,6 @@ class EditGivenAwardForm extends GiveUserAwardForm
         WCF::getTPL()->assign([
             'action' => 'edit',
             'issuedID' => $this->issuedAwardID,
-            'user' => $this->user,
-            'tier' => $this->tier,
-            'tierID' => $this->tierID,
-            'description' => $this->description,
-            'date' => $this->date,
         ]);
     }
 
@@ -44,36 +40,32 @@ class EditGivenAwardForm extends GiveUserAwardForm
         $this->userID = $this->issuedAward->userID;
         $this->user = new User($this->userID);
 
-        $this->tierID = $this->issuedAward->tierID;
-        $this->tier = $this->issuedAward->getTier();
         $this->description = $this->issuedAward->description;
         $this->date = $this->issuedAward->date;
-    }
-
-    public function validate()
-    {
-        if (empty($this->description)) {
-            throw new UserInputException('description');
-        }
-
-        if (empty($this->date)) {
-            throw new UserInputException('date');
-        }
+        $this->award = $this->issuedAward->getAward();
+        $this->awardName = $this->award->title;
+        $this->awardedNumber = $this->issuedAward->awardedNumber;
     }
 
     public function save()
     {
         $objectAction = new IssuedAwardAction([$this->issuedAward], 'update', [
             'data' => [
+                'awardedNumber' => $this->awardedNumber,
                 'description' => $this->description,
                 'date' => $this->date,
             ],
         ]);
         $objectAction->executeAction();
-        $this->saved();
+
+        $this->givenAward = $this->issuedAward;
+
+        IssuedAwardCacheBuilder::getInstance()->reset();
 
         WCF::getTPL()->assign([
             'success' => true,
         ]);
+
+        $this->saved();
     }
 }

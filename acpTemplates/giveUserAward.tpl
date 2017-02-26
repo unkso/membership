@@ -9,7 +9,7 @@
     $(function() {
         new WCF.Date.Time();
         WCF.Date.Picker.init();
-        new WCF.Search.Award("#award", null, false);
+        new WCF.Search.Award("#awardName", null, false);
     });
     //]]>
 </script>
@@ -47,9 +47,9 @@
 			</dl>
 
 			<dl>
-				<dt><label for="award">{lang}wcf.acp.award.assign.award{/lang}</label></dt>
+				<dt><label for="awardName">{lang}wcf.acp.award.assign.award{/lang}</label></dt>
 				<dd>
-					<input id="award" name="award" {if $action == 'edit'}readonly{/if} type="text" class="medium" {if $tier}value="{$tier->getAward()->title}"{/if} />
+					<input id="awardName" name="awardName" {if $action == 'edit'}readonly{/if} type="text" class="medium" value="{$awardName}" />
                     {if $errorField == 'award'}
 						<small class="innerError">
                             {lang}wcf.global.form.error.{$errorType}{/lang}
@@ -59,32 +59,21 @@
 			</dl>
 
 			<dl>
-				<dt><label for="tier">{lang}wcf.acp.award.assign.tier{/lang}</label></dt>
+				<dt><label for="awardedNumber">{lang}wcf.acp.award.assign.awardedNumber{/lang}</label></dt>
 				<dd>
-					<select id="tier" name="tierID" {if !$tier || $action == 'edit'}disabled{/if}>
-						{if $tier}
-							{foreach from=$tier->getAward()->getTiers() item=$object}
-								<option value="{$object->tierID}" {if $object->tierID == $tier->tierID}selected{/if}>{$object->getName()}</option>
-							{/foreach}
-						{/if}
-					</select>
-                    {if $action == 'add'}<small>You will need to select an award above before available tiers are shown.</small>{/if}
-                    {if $errorField == 'tierID'}
+					<input id="awardedNumber" name="awardedNumber" type="number" class="short" value="{$awardedNumber}" />
+					<small>{lang}wcf.acp.award.assign.awardedNumber.description{/lang}</small>
+                    {if $errorField == 'awardedNumber'}
 						<small class="innerError">
-                            {lang}wcf.global.form.tier.error.{$errorType}{/lang}
+							{if $errorType == 'outofrange'}
+                                {lang}wcf.acp.award.assign.awardedNumber.exception.outofrange{/lang}
+							{else}
+                                {lang}wcf.global.form.error.{$errorType}{/lang}
+							{/if}
 						</small>
                     {/if}
 				</dd>
 			</dl>
-
-			{if $confirm|isset && $confirm}
-			<dl>
-				<dt></dt>
-				<dd>
-					<label><input type="checkbox" name="confirm" value="1"/> {lang}wcf.acp.award.assign.confirm{/lang}</label>
-				</dd>
-			</dl>
-            {/if}
 
 			<dl>
 				<dt><label for="awardDescription">{lang}wcf.acp.award.assign.description{/lang}</label></dt>

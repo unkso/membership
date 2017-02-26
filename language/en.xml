@@ -25,6 +25,9 @@
         <item name="wcf.acp.award.assign.notify">Notify user</item>
         <item name="wcf.acp.award.assign.notify.description">If checked, the user will receive a notification for his new award.</item>
         <item name="wcf.acp.award.assign.confirm">I confirm that the action I'm about to perform is correct.</item>
+        <item name="wcf.acp.award.assign.awardedNumber">Awarded number</item>
+        <item name="wcf.acp.award.assign.awardedNumber.description">Users can receive the same award up to 9 times. Specify how many times the award has been given (including this one)</item>
+        <item name="wcf.acp.award.assign.awardedNumber.exception.outofrange">This has to be a number between 1 and 9.</item>
     </category>
 
     <category name="wcf.acp.group">
@@ -44,6 +47,7 @@
         <item name="wcf.user.option.category.awards"><![CDATA[Awards]]></item>
         <item name="wcf.user.option.category.awards.award"><![CDATA[Award / Tier]]></item>
         <item name="wcf.user.option.category.awards.date"><![CDATA[Awarded Date]]></item>
+        <item name="wcf.user.option.category.awards.number"><![CDATA[Awarded Number]]></item>
     </category>
 
     <category name="wcf.acp.menu">

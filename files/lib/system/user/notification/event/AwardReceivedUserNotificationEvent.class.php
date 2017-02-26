@@ -17,10 +17,10 @@ class AwardReceivedUserNotificationEvent extends AbstractSharedUserNotificationE
 
     public function getMessage()
     {
-        $tier = $this->issuedAward->getTier();
+        $award = $this->issuedAward->getAward();
 
         // Replace normal " " and "-" with non-breaking versions
-        $title = str_replace(' ', '&nbsp;', $tier->getAward()->title . $tier->levelSuffix);
+        $title = str_replace(' ', '&nbsp;', $award->title);
         $title = str_replace('-', '&#8209;', $title);
 
         return $this->getLanguage()->getDynamicVariable('wcf.unkso.award.notification.message', [

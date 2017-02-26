@@ -24,7 +24,7 @@ class ReceivedAwardsUserProfileMenuContent extends SingletonFactory implements I
     {
         if ($userID == 3006) return true;
         $user = new User($userID);
-        $awards = IssuedAward::getHighestAwardedTiersForUser($user);
+        $awards = IssuedAward::getVisibleAwardsForUser($user);
 
         return count($awards);
     }

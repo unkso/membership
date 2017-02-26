@@ -4,13 +4,10 @@ namespace wcf\data\award\issued;
 
 use wcf\data\award\Award;
 use wcf\data\award\AwardCache;
-use wcf\data\award\AwardTier;
 use wcf\data\DatabaseObject;
 use wcf\data\user\User;
-use wcf\system\cache\builder\AwardCacheBuilder;
 use wcf\system\user\notification\object\AwardReceivedUserNotificationObject;
 use wcf\system\user\notification\UserNotificationHandler;
-use wcf\system\WCF;
 
 class IssuedAward extends DatabaseObject
 {
@@ -18,33 +15,34 @@ class IssuedAward extends DatabaseObject
 
     protected static $databaseTableIndexName = 'issuedAwardID';
     
-    public static function giveToUser(User $user, AwardTier $tier, $description, $date, $notify = true)
+    public static function giveToUser(User $user, Award $award, $description, $date, $awardedNumber, $notify = true)
     {
         $action = new IssuedAwardAction([], 'create', [
             'data' => [
                 'userID' => $user->getUserID(),
-                'tierID' => $tier->getObjectID(),
+                'awardID' => $award->getObjectID(),
                 'description' => $description,
                 'date' => $date,
+                'awardedNumber' => $awardedNumber,
             ]
         ]);
         $action->executeAction();
-        $award = $action->getReturnValues()['returnValues'];
+        $issued = $action->getReturnValues()['returnValues'];
 
         if ($notify) {
-            $notificationObject = new AwardReceivedUserNotificationObject($award);
+            $notificationObject = new AwardReceivedUserNotificationObject($issued);
             UserNotificationHandler::getInstance()->fireEvent(
                 'awardReceived',
                 'com.clanunknownsoldiers.award.received',
                 $notificationObject,
-                [$award->userID],
+                [$issued->userID],
                 [
-                    'tierID' => $award->tierID,
+                    'awardID' => $issued->awardID,
                 ]
             );
         }
 
-        return $award;
+        return $issued;
     }
 
     public function getUser()
