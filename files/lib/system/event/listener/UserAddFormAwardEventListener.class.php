@@ -20,11 +20,11 @@ class UserAddFormAwardEventListener implements IParameterizedEventListener
     public function execute($eventObj, $className, $eventName, array &$parameters)
     {
         $userID = $eventObj->userID;
-        $awards = IssuedAward::getAllAwardedTiersForUser(new User($userID));
-
-        usort($awards, function ($a, $b) {
-            return ($a->date > $b->date) ? -1 : 1;
-        });
+        //$awards = IssuedAward::getAllAwardedTiersForUser(new User($userID));
+        $awards = [];
+        //usort($awards, function ($a, $b) {
+        //    return ($a->date > $b->date) ? -1 : 1;
+        //});
 
         WCF::getTPL()->assign([
             'canAssignAwards' => WCF::getSession()->getPermission('admin.clan.award.canIssueAwards'),

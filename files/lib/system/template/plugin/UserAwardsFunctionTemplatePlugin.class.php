@@ -11,7 +11,7 @@ class UserAwardsFunctionTemplatePlugin implements IFunctionTemplatePlugin
     public function execute($tagArgs, TemplateEngine $tplObj)
     {
         $user = new User($tagArgs['userID']);
-        $awards = IssuedAward::getHighestAwardedTiersForUser($user);
+        $awards = IssuedAward::getVisibleAwardsForUser($user);
 
         if ($tagArgs['assign'] !== null) {
             $tplObj->assign($tagArgs['assign'], $awards);

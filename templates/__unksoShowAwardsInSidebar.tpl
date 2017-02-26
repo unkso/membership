@@ -9,19 +9,19 @@
 
     {content}
     {foreach from=$awards item=issue}
-        {assign var='tier' value=$issue->getTier()}
+        {assign var='award' value=$issue->getAward()}
         {counter name='displayedAwardCount'|concat:$counterCounter assign=awardCount print=false}
         {if $awardCount <= 9}
-            <div class="col-md-4 nopadding award jsTooltip" data-delay="200" title="{$tier->getAward()->title}{$tier->levelSuffix}">
-                <img src="{$tier->ribbonURL}" style="width:100%;">
+            <div class="col-md-4 nopadding award jsTooltip" data-delay="200" title="{$award->title}">
+                <img src="{$issue->getRibbonURL()}" style="width:100%;">
             </div>
         {else}
             {counter name='moreAwardCount'|concat:$counterCounter assign=moreAwards print=false}
             {if $moreAwards|isset && $moreAwards == 1}
                 <div class="col-md-12 hiddenAwards nopadding">
             {/if}
-            <div class="col-md-4 additional award nopadding jsTooltip" data-delay="200" title="{$tier->getAward()->title}{$tier->levelSuffix}">
-                <img src="{$tier->ribbonURL}" style="width:100%;">
+            <div class="col-md-4 additional award nopadding jsTooltip" data-delay="200" title="{$award->title}">
+                <img src="{$issue->getRibbonURL()}" style="width:100%;">
             </div>
         {/if}
     {/foreach}

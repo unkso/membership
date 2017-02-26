@@ -2,55 +2,14 @@
 
 <script data-relocate="true">
     WCF.Search.Award = WCF.Search.Base.extend({
-        _className: 'wcf\\data\\award\\action\\AwardAction',
-
-		_tierInput: null,
-
-		_awardList: [],
-
-        init: function(searchInput, tierInput, callback, excludedSearchValues) {
-            this._tierInput = $(tierInput);
-
-            this._super(searchInput, callback, excludedSearchValues, false);
-        },
-
-		_clearList: function(clearSearchInput) {
-            this._awardList = [];
-        	this._super(clearSearchInput);
-        },
-
-        _createListItem: function(item) {
-            var $listItem = this._super(item);
-            this._awardList.push(item);
-
-            return $listItem;
-        },
-
-        _executeCallback: function(event) {
-            var $listItem = $(event.currentTarget);
-
-            var award = null;
-            $.each(this._awardList, function(i, object) {
-                if (object.objectID == $listItem.data('objectID')) {
-                    award = object;
-                }
-            });
-
-            var input = this._tierInput;
-            input.prop('disabled', false).find('option').remove();
-            $.each(award.tiers, function(i, tier) {
-                input.append('<option value="' + tier.objectID + '">' + tier.title + '</option>');
-            });
-
-            this._super(event);
-        }
+        _className: 'wcf\\data\\award\\action\\AwardAction'
     });
 
     //<![CDATA[
     $(function() {
         new WCF.Date.Time();
         WCF.Date.Picker.init();
-        new WCF.Search.Award("#award", "#tier", null, false);
+        new WCF.Search.Award("#award", null, false);
     });
     //]]>
 </script>
