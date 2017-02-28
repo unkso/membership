@@ -100,8 +100,8 @@ class IssuedAward extends DatabaseObject
         // We do another loop to be sure we already have all awards in the output.
         foreach ($awards as $issue) {
             $award = $issue->getAward();
-            if ($award->isTiered && $award->replacesAward && isset($output[$award->replacesAward])) {
-                unset($output[$award->replacesAward]);
+            foreach ($award->getAllPreviousAwards() as $previousAward) {
+                if (isset($output[$previousAward->awardID])) unset($output[$previousAward->awardID]);
             }
         }
 
